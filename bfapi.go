@@ -3,13 +3,26 @@ package bfapi
 import (
 	"crypto/rand"
 	"crypto/tls"
+	"encoding/json"
 	"log"
 	"net"
 	"net/http"
+	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/tarb/www"
 )
+
+//
+type Config struct {
+	CertFile string
+	KeyFile  string
+	AppKey   string
+	Username string
+	Password string
+	Testing  bool
+}
 
 const (
 	// HTTPS only scheme
@@ -17,44 +30,66 @@ const (
 
 	// Hosts
 	testHost         string = "localhost"
+	testStreamHost   string = ":8080"
 	prodAccountHost  string = "identitysso.betfair.com"
 	prodExchangeHost string = "api.betfair.com"
+	prodStreamHost   string = "stream-api.betfair.com:443"
 
 	// Supported login method paths
-	certLogin string = "api/certlogin"
-	keepAlive string = "api/keepAlive"
+	certLogin string = "/api/certlogin/"
+	keepAlive string = "/api/keepAlive/"
 
 	// Supported account method paths
-	getAccountFunds   string = "exchange/account/rest/v1.0/getAccountFunds"
-	getAccountDetails string = "exchange/account/rest/v1.0/getAccountDetails"
+	getAccountFunds   string = "/exchange/account/rest/v1.0/getAccountFunds/"
+	getAccountDetails string = "/exchange/account/rest/v1.0/getAccountDetails/"
 
 	// Supported exchange method paths
-	listMarketCatalogue string = "exchange/betting/rest/v1.0/listMarketCatalogue"
-	cancelOrders        string = "exchange/betting/rest/v1.0/cancelOrders"
-	placeOrders         string = "exchange/betting/rest/v1.0/placeOrders"
-	replaceOrders       string = "exchange/betting/rest/v1.0/replaceOrders"
-	updateOrders        string = "exchange/betting/rest/v1.0/updateOrders"
+	listMarketCatalogue string = "/exchange/betting/rest/v1.0/listMarketCatalogue/"
+	cancelOrders        string = "/exchange/betting/rest/v1.0/cancelOrders/"
+	placeOrders         string = "/exchange/betting/rest/v1.0/placeOrders/"
+	replaceOrders       string = "/exchange/betting/rest/v1.0/replaceOrders/"
+	updateOrders        string = "/exchange/betting/rest/v1.0/updateOrders/"
 )
 
-var exchangeHost string
-var accountHost string
+var (
+	exchangeHost string
+	accountHost  string
+	streamHost   string
+
+	certificate tls.Certificate
+
+	username string
+	password string
+	appKey   string
+	token    string
+)
 
 // Init creates a new http.Client, sets up default headers and configures
 // which host to use
 // certBytes, keyBytes - sed to make the certificate used in the http.Client
 // appkey - default header value for X-Application <appkey>
 // testing - sets which host is used in urls - production or testing
-func Init(certBytes, keyBytes []byte, appkey string, testing bool) {
+func Init(cfg Config) {
 	var err error
-	var cert tls.Certificate
 
-	if cert, err = tls.X509KeyPair(certBytes, keyBytes); err != nil {
-		log.Fatal("Error initilizing bfapi: ", err)
+	// store the config vars
+	if certificate, err = tls.LoadX509KeyPair(cfg.CertFile, cfg.KeyFile); err != nil {
+		log.Fatal("Error initilizing bfapi > ", err)
 	}
 
+	username = cfg.Username
+	password = cfg.Password
+	appKey = cfg.AppKey
+	if cfg.Testing {
+		exchangeHost, accountHost, streamHost = testHost, testHost, testStreamHost
+	} else {
+		exchangeHost, accountHost, streamHost = prodExchangeHost, prodAccountHost, prodStreamHost
+	}
+
+	// set up https client with supplied cert
 	var transport = &http.Transport{
 		TLSClientConfig: &tls.Config{
-			Certificates:       []tls.Certificate{cert},
+			Certificates:       []tls.Certificate{certificate},
 			InsecureSkipVerify: true,
 			Renegotiation:      tls.RenegotiateFreelyAsClient,
 			Rand:               rand.Reader,
@@ -69,14 +104,41 @@ func Init(certBytes, keyBytes []byte, appkey string, testing bool) {
 
 	// X-Authentication SessionToken is set in defaults after successful certLogin
 	www.SetDefaultHeaders(func(h http.Header) {
-		h.Set("X-Application", appkey)
+		h.Set("X-Application", cfg.AppKey)
 		h.Set("Accept", "application/json")
 		h.Set("Connection", "keep-alive")
 	})
+}
 
-	if testing {
-		exchangeHost, accountHost = testHost, testHost
-	} else {
-		exchangeHost, accountHost = prodExchangeHost, prodAccountHost
+//
+func InitWithCfgFile(path string) {
+	var err error
+	var file *os.File
+
+	if !filepath.IsAbs(path) {
+		var cwd string
+		if cwd, err = os.Executable(); err != nil {
+			log.Fatalln("Fatal: Error opening executable path > ", err.Error())
+		}
+
+		if cwd, err = filepath.Abs(filepath.Dir(cwd)); err != nil {
+			log.Fatalln("Fatal: Error determining executable path > ", err.Error())
+		}
+
+		path = filepath.Join(cwd, path)
 	}
+
+	//open file
+	if file, err = os.Open(path); err != nil {
+		log.Fatalln("Fatal: Error opening config file > ", err.Error())
+	}
+	defer file.Close()
+
+	//read json into new config struct
+	var cfg Config
+	if err = json.NewDecoder(file).Decode(&cfg); err != nil {
+		log.Fatalln("Fatal: Error parsing config file > ", err.Error())
+	}
+
+	Init(cfg)
 }

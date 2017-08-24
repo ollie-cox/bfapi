@@ -6,15 +6,18 @@ import (
 
 //
 type ListMarketCatalogueArg struct {
-	Sort             string   `json:"sort,omitempty"`
-	MarketProjection []string `json:"marketProjection,omitempty"`
-	MaxResults       int      `json:"maxResults,omitempty"`
-	Filter           struct {
-		MarketIds  []string `json:"marketIds,omitempty"`
-		EventTypes []string `json:"eventTypeIds,omitempty"`
-		Countries  []string `json:"marketCountries,omitempty"`
-		TypeCodes  []string `json:"marketTypeCodes,omitempty"`
-	} `json:"filter,omitempty"`
+	Sort             string           `json:"sort,omitempty"`
+	MarketProjection []string         `json:"marketProjection,omitempty"`
+	MaxResults       int              `json:"maxResults,omitempty"`
+	Filter           MarketListFilter `json:"filter,omitempty"`
+}
+
+//
+type MarketListFilter struct {
+	MarketIds  []string `json:"marketIds,omitempty"`
+	EventTypes []string `json:"eventTypeIds,omitempty"`
+	Countries  []string `json:"marketCountries,omitempty"`
+	TypeCodes  []string `json:"marketTypeCodes,omitempty"`
 }
 
 //
@@ -114,15 +117,25 @@ type ExchangePrice struct {
 type ExchangeBet [2]float64
 
 //
+type PlaceOrderArg struct {
+	MarketID            string             `json:"marketId,omitempty"`
+	Instructions        []PlaceInstruction `json:"instructions,omitempty"`
+	CustomerRef         string             `json:"customerRef,omitempty"`
+	MarketVersion       int                `json:"marketVersion,omitempty"`
+	CustomerStrategyRef string             `json:"customerStrategyRef,omitempty"`
+	Async               bool               `json:"async,omitempty"`
+}
+
+//
 type PlaceInstruction struct {
-	OrderType          string             `json:"orderType,omitempty"`
-	SelectionID        string             `json:"selectionId,omitempty"`
-	Handicap           string             `json:"handicap,omitempty"`
-	Side               string             `json:"side,omitempty"`
-	LimitOrder         LimitOrder         `json:"limitOrder,omitempty"`
-	LimitOnCloseOrder  LimitOnCloseOrder  `json:"limitOnCloseOrder,omitempty"`
-	MarketOnCloseOrder MarketOnCloseOrder `json:"marketOnCloseOrder,omitempty"`
-	CustomerOrderRef   string             `json:"customerOrderRef,omitempty"`
+	OrderType          string              `json:"orderType,omitempty"`
+	SelectionID        int                 `json:"selectionId,omitempty"`
+	Handicap           string              `json:"handicap,omitempty"`
+	Side               string              `json:"side,omitempty"`
+	LimitOrder         *LimitOrder         `json:"limitOrder,omitempty"`
+	LimitOnCloseOrder  *LimitOnCloseOrder  `json:"limitOnCloseOrder,omitempty"`
+	MarketOnCloseOrder *MarketOnCloseOrder `json:"marketOnCloseOrder,omitempty"`
+	CustomerOrderRef   string              `json:"customerOrderRef,omitempty"`
 }
 
 //

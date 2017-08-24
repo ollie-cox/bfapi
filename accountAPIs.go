@@ -11,7 +11,10 @@ func GetAccountFunds() (AccountFundsResponse, error) {
 	var err error
 	var result AccountFundsResponse
 
-	err = www.Build(http.MethodPost, scheme, accountHost, getAccountFunds).
+	err = www.Build(http.MethodPost, scheme, prodExchangeHost, getAccountFunds).
+		WithHeaders(func(h http.Header) {
+			h.Set("Content-Type", "application/json; charset=utf-8")
+		}).
 		CollectJSON(&result)
 
 	return result, err
@@ -22,7 +25,10 @@ func GetAccountDetails() (AccountDetailsResponse, error) {
 	var err error
 	var result AccountDetailsResponse
 
-	err = www.Build(http.MethodPost, scheme, accountHost, getAccountDetails).
+	err = www.Build(http.MethodPost, scheme, prodExchangeHost, getAccountDetails).
+		WithHeaders(func(h http.Header) {
+			h.Set("Content-Type", "application/json; charset=utf-8")
+		}).
 		CollectJSON(&result)
 
 	return result, err

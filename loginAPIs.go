@@ -2,14 +2,16 @@ package bfapi
 
 import (
 	"errors"
+	"log"
 	"net/http"
 	"net/url"
+	"time"
 
 	"github.com/tarb/www"
 )
 
 //
-func CertLogin(username, password string) (string, error) {
+func CertLogin() (string, error) {
 	type loginResult struct {
 		SessionToken string `json:"sessionToken"`
 		LoginStatus  string `json:"loginStatus"`
@@ -27,11 +29,12 @@ func CertLogin(username, password string) (string, error) {
 
 	// Connection worked but login was not successful
 	// Probably caused by username/password error
-	if result.LoginStatus != "SUCCESS" {
+	if err == nil && result.LoginStatus != "SUCCESS" {
 		return "", errors.New("CertLogin Failed with returned status: " + result.LoginStatus)
 	}
 
-	// store the session token as a default header
+	// store the session token and set as a default header
+	token = result.SessionToken
 	www.SetDefaultHeaders(func(h http.Header) {
 		h.Set("X-Authentication", result.SessionToken)
 	})
@@ -42,7 +45,7 @@ func CertLogin(username, password string) (string, error) {
 }
 
 //
-func KeepAlive() error {
+func KeepAlive(tick time.Duration) {
 	type keepAliveResult struct {
 		Token   string `json:"token"`
 		Product string `json:"product"`
@@ -50,17 +53,31 @@ func KeepAlive() error {
 		Error   string `json:"error"`
 	}
 
-	var err error
-	var result keepAliveResult
+	//sleep initially
+	// time.Sleep(tick)
 
-	err = www.Build(http.MethodGet, scheme, accountHost, keepAlive).
-		CollectJSON(&result)
+	const maxFails int = 5
+	var numFails int
 
-	// Connection worked but keepAlive was not successful
-	if result.Status != "SUCCESS" {
-		return errors.New("KeepAlive Failed with returned status: " + result.Status)
+	for {
+		var err error
+		var result keepAliveResult
+
+		err = www.Build(http.MethodGet, scheme, accountHost, keepAlive).
+			CollectJSON(&result)
+
+		// Connection worked but keepAlive was not successful
+		if result.Status != "SUCCESS" {
+			numFails++
+
+			if numFails < maxFails {
+				time.Sleep(time.Minute)
+				continue
+			}
+			log.Fatal("Can not keep session alive", err)
+		}
+
+		numFails = 0
+		time.Sleep(tick)
 	}
-
-	// Not necessarily KeepAlive success
-	return err
 }

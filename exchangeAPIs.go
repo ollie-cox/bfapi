@@ -19,12 +19,12 @@ func ListMarketCatalogue(lmc ListMarketCatalogueArg) ([]MarketCatalogue, error) 
 }
 
 //
-func PlaceOrders(ins []PlaceInstruction) (PlaceExecutionReport, error) {
+func PlaceOrders(arg PlaceOrderArg) (PlaceExecutionReport, error) {
 	var err error
 	var result PlaceExecutionReport
 
 	err = www.Build(http.MethodPost, scheme, exchangeHost, placeOrders).
-		WithJSONBody(ins).
+		WithJSONBody(arg).
 		CollectJSON(&result)
 
 	return result, err
