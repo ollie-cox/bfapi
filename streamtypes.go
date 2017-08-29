@@ -197,7 +197,7 @@ type RunnerOrder struct {
 //
 type UnmatchedOrder struct {
 	ID           string  `json:"id"`
-	Ref          string  `json:"rfc"`
+	Ref          string  `json:"rfo"`
 	Price        float64 `json:"p"`
 	Size         float64 `json:"s"`
 	Side         string  `json:"side"`

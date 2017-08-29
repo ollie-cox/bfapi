@@ -4,7 +4,6 @@ package bfapi
 
 import (
 	json "encoding/json"
-
 	easyjson "github.com/mailru/easyjson"
 	jlexer "github.com/mailru/easyjson/jlexer"
 	jwriter "github.com/mailru/easyjson/jwriter"
@@ -39,7 +38,7 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi(in *jlexer.Lexer, out *UnmatchedOr
 		switch key {
 		case "id":
 			out.ID = string(in.String())
-		case "rfc":
+		case "rfo":
 			out.Ref = string(in.String())
 		case "p":
 			out.Price = float64(in.Float64())
@@ -95,7 +94,7 @@ func easyjson54c0b74dEncodeGithubComTarbBfapi(out *jwriter.Writer, in UnmatchedO
 		out.RawByte(',')
 	}
 	first = false
-	out.RawString("\"rfc\":")
+	out.RawString("\"rfo\":")
 	out.String(string(in.Ref))
 	if !first {
 		out.RawByte(',')
