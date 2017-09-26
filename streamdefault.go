@@ -43,8 +43,8 @@ func DefaultListMarketCatalogueArg(filter MarketListFilter) ListMarketCatalogueA
 		MarketProjection: []string{
 			"MARKET_START_TIME",
 			"RUNNER_DESCRIPTION",
+			"RUNNER_METADATA",
 			"EVENT",
-			"MARKET_DESCRIPTION",
 			"EVENT_TYPE"}, //, "RUNNER_METADATA", "EVENT_TYPE",
 		MaxResults: 200,
 	}

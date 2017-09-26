@@ -19,6 +19,18 @@ func ListMarketCatalogue(lmc ListMarketCatalogueArg) ([]MarketCatalogue, error) 
 }
 
 //
+func ListMarketBook(lmb ListMarketBookArg) ([]MarketBook, error) {
+	var err error
+	var result []MarketBook
+
+	err = www.Build(http.MethodPost, scheme, exchangeHost, listMarketBook).
+		WithJSONBody(lmb).
+		CollectJSON(&result)
+
+	return result, err
+}
+
+//
 func PlaceOrders(arg PlaceOrderArg) (PlaceExecutionReport, error) {
 	var err error
 	var result PlaceExecutionReport
@@ -31,24 +43,24 @@ func PlaceOrders(arg PlaceOrderArg) (PlaceExecutionReport, error) {
 }
 
 //
-func CancelOrders(ins []CancelInstruction) (CancelExecutionReport, error) {
+func CancelOrders(req CancelOrderRequest) (CancelExecutionReport, error) {
 	var err error
 	var result CancelExecutionReport
 
 	err = www.Build(http.MethodPost, scheme, exchangeHost, cancelOrders).
-		WithJSONBody(ins).
+		WithJSONBody(req).
 		CollectJSON(&result)
 
 	return result, err
 }
 
 //
-func ReplaceOrders(ins []ReplaceInstruction) (ReplaceExecutionReport, error) {
+func ReplaceOrders(req ReplaceOrderRequest) (ReplaceExecutionReport, error) {
 	var err error
 	var result ReplaceExecutionReport
 
 	err = www.Build(http.MethodPost, scheme, exchangeHost, replaceOrders).
-		WithJSONBody(ins).
+		WithJSONBody(req).
 		CollectJSON(&result)
 
 	return result, err

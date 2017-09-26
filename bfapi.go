@@ -8,7 +8,6 @@ import (
 	"net"
 	"net/http"
 	"os"
-	"path/filepath"
 	"time"
 
 	"github.com/tarb/www"
@@ -45,6 +44,7 @@ const (
 
 	// Supported exchange method paths
 	listMarketCatalogue string = "/exchange/betting/rest/v1.0/listMarketCatalogue/"
+	listMarketBook      string = "/exchange/betting/rest/v1.0/listMarketBook/"
 	cancelOrders        string = "/exchange/betting/rest/v1.0/cancelOrders/"
 	placeOrders         string = "/exchange/betting/rest/v1.0/placeOrders/"
 	replaceOrders       string = "/exchange/betting/rest/v1.0/replaceOrders/"
@@ -114,19 +114,6 @@ func Init(cfg Config) {
 func InitWithCfgFile(path string) {
 	var err error
 	var file *os.File
-
-	if !filepath.IsAbs(path) {
-		var cwd string
-		if cwd, err = os.Executable(); err != nil {
-			log.Fatalln("Fatal: Error opening executable path > ", err.Error())
-		}
-
-		if cwd, err = filepath.Abs(filepath.Dir(cwd)); err != nil {
-			log.Fatalln("Fatal: Error determining executable path > ", err.Error())
-		}
-
-		path = filepath.Join(cwd, path)
-	}
 
 	//open file
 	if file, err = os.Open(path); err != nil {

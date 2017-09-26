@@ -35,11 +35,47 @@ type MarketCatalogue struct {
 
 //
 type RunnerCatalogue struct {
-	SelectionID  int               `json:"selectionId,omitempty"`
-	RunnerName   string            `json:"runnerName,omitempty"`
-	Handicap     float64           `json:"handicap,omitempty"`
-	SortPriority int               `json:"sortPriority,omitempty"`
-	Metadata     map[string]string `json:"metadata,omitempty"`
+	SelectionID  int             `json:"selectionId,omitempty"`
+	RunnerName   string          `json:"runnerName,omitempty"`
+	Handicap     float64         `json:"handicap,omitempty"`
+	SortPriority int             `json:"sortPriority,omitempty"`
+	Metadata     *RunnerMetadata `json:"metadata,omitempty"`
+}
+
+//
+type RunnerMetadata struct {
+	SireName                 *string `json:"SIRE_NAME,omitempty"`
+	ClothNumberAlpha         *string `json:"CLOTH_NUMBER_ALPHA,omitempty"`
+	OfficialRating           *string `json:"OFFICIAL_RATING,omitempty"`
+	ColoursDescription       *string `json:"COLOURS_DESCRIPTION,omitempty"`
+	ColoursFileName          *string `json:"COLOURS_FILENAME,omitempty"`
+	ForecastPriceDenominator *string `json:"FORECASTPRICE_DENOMINATOR,omitempty"`
+	DamSireName              *string `json:"DAMSIRE_NAME,omitempty"`
+	WeightValue              *string `json:"WEIGHT_VALUE,omitempty"`
+	SexType                  *string `json:"SEX_TYPE,omitempty"`
+	DaysSinceLastRun         *string `json:"DAYS_SINCE_LAST_RUN,omitempty"`
+	Wearing                  *string `json:"WEARING,omitempty"`
+	OwnerName                *string `json:"OWNER_NAME,omitempty"`
+	DamYearBorn              *string `json:"DAM_YEAR_BORN,omitempty"`
+	SireBred                 *string `json:"SIRE_BRED,omitempty"`
+	JockeyName               *string `json:"JOCKEY_NAME,omitempty"`
+	DamBred                  *string `json:"DAM_BRED,omitempty"`
+	AdjustedRating           *string `json:"ADJUSTED_RATING,omitempty"`
+	RunnerID                 *string `json:"runnerId,omitempty"`
+	ClothNumber              *string `json:"CLOTH_NUMBER,omitempty"`
+	SireYearBorn             *string `json:"SIRE_YEAR_BORN,omitempty"`
+	TrainerName              *string `json:"TRAINER_NAME,omitempty"`
+	ColourType               *string `json:"COLOUR_TYPE,omitempty"`
+	Age                      *string `json:"AGE,omitempty"`
+	DamsireBred              *string `json:"DAMSIRE_BRED,omitempty"`
+	JockeyClaim              *string `json:"JOCKEY_CLAIM,omitempty"`
+	Form                     *string `json:"FORM,omitempty"`
+	ForecastPriceNumerator   *string `json:"FORECASTPRICE_NUMERATOR,omitempty"`
+	Bred                     *string `json:"BRED,omitempty"`
+	DamName                  *string `json:"DAM_NAME,omitempty"`
+	DamSireYearBorn          *string `json:"DAMSIRE_YEAR_BORN,omitempty"`
+	StallDraw                *string `json:"STALL_DRAW,omitempty"`
+	WeightUnits              *string `json:"WEIGHT_UNITS,omitempty"`
 }
 
 //
@@ -68,7 +104,7 @@ type Competition struct {
 type MarketDescription struct {
 	PersistenceEnabled     bool                   `json:"persistenceEnabled,omitempty"`
 	BspMarket              bool                   `json:"bspMarket,omitempty"`
-	NarketTime             time.Time              `json:"marketTime,omitempty"`
+	MarketTime             time.Time              `json:"marketTime,omitempty"`
 	SuspendTime            time.Time              `json:"suspendTime,omitempty"`
 	SettleTime             time.Time              `json:"settleTime,omitempty"`
 	BettingType            string                 `json:"bettingType,omitempty"` //ODDS/LINE/RANGE/ASIAN_HANDICAP_DOUBLE_LINE/ASIAN_HANDICAP_SINGLE_LINE/FIXED_ODDS
@@ -111,6 +147,98 @@ type ExchangePrice struct {
 	AvailableToBack []ExchangeBet `json:"availableToBack,omitempty"`
 	AvailableToLay  []ExchangeBet `json:"availableToLay,omitempty"`
 	TradedVolume    []ExchangeBet `json:"tradedVolume,omitempty"`
+}
+
+//
+type PriceProjection struct {
+	PriceData             []string              `json:"priceData,omitempty"` //SP_AVAILABLE,SP_TRADED,EX_BEST_OFFERS,EX_ALL_OFFERS,EX_ALL_OFFERS,EX_TRADED
+	ExBestOffersOverrides ExBestOffersOverrides `json:"exBestOffersOverrides,omitempty"`
+	Virtualise            bool                  `json:"virtualise,omitempty"`
+	RolloverStakes        bool                  `json:"rolloverStakes,omitempty"`
+}
+
+//
+type ExBestOffersOverrides struct {
+	BestPricesDepth          int     `json:"bestPricesDepth,omitempty"`
+	RollupModel              string  `json:"rollupModel,omitempty"` //STAKE,PAYOUT,MANAGED_LIABILITY,NONE
+	RollupLimit              int     `json:"rollupLimit,omitempty"`
+	RollupLiabilityThreshold float64 `json:"rollupLiabilityThreshold,omitempty"`
+	RollupLiabilityFactor    int     `json:"rollupLiabilityFactor,omitempty"`
+}
+
+//
+type ListMarketBookArg struct {
+	MarketIds                     []string        `json:"marketIds,omitempty"` //REQUIRED
+	PriceProjection               PriceProjection `json:"priceProjection,omitempty"`
+	OrderProjection               string          `json:"orderProjection,omitempty"` //ALL,EXECUTABLE,EXECUTION_COMPLETE
+	MatchProjection               string          `json:"matchProjection,omitempty"` //NO_ROLLUP,ROLLED_UP_BY_PRICE,ROLLED_UP_BY_AVG_PRICE
+	IncludeOverallPosition        bool            `json:"includeOverallPosition,omitempty"`
+	PartitionMatchedByStrategyRef bool            `json:"partitionMatchedByStrategyRef,omitempty"`
+	CustomerStrategyRefs          []string        `json:"customerStrategyRefs,omitempty"`
+	CurrencyCode                  string          `json:"currencyCode,omitempty"`
+	Locale                        string          `json:"locale,omitempty"`
+	MatchedSince                  time.Time       `json:"matchedSince,omitempty"`
+	BetIds                        []string        `json:"betIds,omitempty"`
+}
+
+//
+type MarketBook struct {
+	MarketID              string    `json:"marketId,omitempty"`
+	IsMarketDataDelayed   bool      `json:"isMarketDataDelayed,omitempty"`
+	Status                string    `json:"status,omitempty"` //INACTIVE,OPEN,SUSPENDED,CLOSED
+	BetDelay              int       `json:"betDelay,omitempty"`
+	BspReconciled         bool      `json:"bspReconciled,omitempty"`
+	Complete              bool      `json:"complete,omitempty"`
+	Inplay                bool      `json:"inplay,omitempty"`
+	NumberOfWinners       int       `json:"numberOfWinners,omitempty"`
+	NumberOfRunners       int       `json:"numberOfRunners,omitempty"`
+	NumberOfActiveRunners int       `json:"numberOfActiveRunners,omitempty"`
+	LastMatchTime         time.Time `json:"lastMatchTime,omitempty"`
+	TotalMatched          float64   `json:"totalMatched,omitempty"`
+	TotalAvailable        float64   `json:"totalAvailable,omitempty"`
+	CrossMatching         bool      `json:"crossMatching,omitempty"`
+	RunnersVoidable       bool      `json:"runnersVoidable,omitempty"`
+	Version               int64     `json:"version,omitempty"`
+	Runners               []Runner  `json:"runners,omitempty"`
+	KeyLineDescription    string    `json:"keyLineDescription,omitempty"` //?
+}
+
+//
+type Runner struct {
+	SelectionID      int64          `json:"selectionId,omitempty"`
+	Handicap         float64        `json:"handicap,omitempty"`
+	Status           string         `json:"status,omitempty"` //ACTIVE, REMOVED, WINNER, PLACED, LOSER, HIDDEN
+	AdjustmentFactor float64        `json:"adjustmentFactor,omitempty"`
+	LastPriceTraded  float64        `json:"lastPriceTraded,omitempty"`
+	TotalMatched     float64        `json:"totalMatched,omitempty"`
+	RemovalDate      time.Time      `json:"removalDate,omitempty"`
+	Sp               StartingPrices `json:"sp,omitempty"`
+	Ex               ExchangePrices `json:"ex,omitempty"`
+	// orders            Order            `json:"orders,omitempty"`
+	// matches           Match      `json:"matches,omitempty"`
+	// matchesByStrategy map[string]Matches        `json:"matchesByStrategy,omitempty"`
+}
+
+//
+type StartingPrices struct {
+	NearPrice         float64     `json:"nearPrice,omitempty"`
+	FarPrice          float64     `json:"farPrice,omitempty"`
+	BackStakeTaken    []PriceSize `json:"backStakeTaken,omitempty"`
+	LayLiabilityTaken []PriceSize `json:"layLiabilityTaken,omitempty"`
+	ActualSP          float64     `json:"actualSP,omitempty"`
+}
+
+//
+type ExchangePrices struct {
+	AvailableToBack []PriceSize `json:"availableToBack,omitempty"`
+	AvailableToLay  []PriceSize `json:"availableToLay,omitempty"`
+	TradedVolume    []PriceSize `json:"tradedVolume,omitempty"`
+}
+
+//
+type PriceSize struct {
+	Price float64 `json:"price,omitempty"`
+	Size  float64 `json:"size,omitempty"`
 }
 
 //
