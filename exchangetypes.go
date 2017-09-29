@@ -245,6 +245,16 @@ type PriceSize struct {
 type ExchangeBet [2]float64
 
 //
+func (eb ExchangeBet) GetPrice() float64 {
+	return eb[0]
+}
+
+//
+func (eb ExchangeBet) GetSize() float64 {
+	return eb[1]
+}
+
+//
 type PlaceOrderArg struct {
 	MarketID            string             `json:"marketId,omitempty"`
 	Instructions        []PlaceInstruction `json:"instructions,omitempty"`
