@@ -123,19 +123,19 @@ type MarketChange struct {
 
 //
 type RunnerChange struct {
-	ID    int           `json:"id"`    //RunnerId
-	Spn   float64       `json:"spn"`   //predicted sp
-	Ltp   float64       `json:"ltp"`   //last traded price
-	Tv    float64       `json:"tv"`    //traded volume
-	Bdatb []ExchangeBet `json:"bdatb"` //available to back
-	Bdatl []ExchangeBet `json:"bdatl"` //available to lay
-	Atb   []ExchangeBet `json:"atb"`   //available to back
-	Atl   []ExchangeBet `json:"atl"`   //available to lay
-	Batb  []ExchangeBet `json:"batb"`  //available to back
-	Batl  []ExchangeBet `json:"batl"`  //available to lay
-	Trd   []ExchangeBet `json:"trd"`   //traded bets
-	Spb   []ExchangeBet `json:"spb"`   //starting price bets
-	Spl   []ExchangeBet `json:"spl"`   //starting price lays
+	ID    int64        `json:"id"`    //RunnerId
+	Spn   float64      `json:"spn"`   //predicted sp
+	Ltp   float64      `json:"ltp"`   //last traded price
+	Tv    float64      `json:"tv"`    //traded volume
+	Bdatb [][3]float64 `json:"bdatb"` //available to back
+	Bdatl [][3]float64 `json:"bdatl"` //available to lay
+	Batb  [][3]float64 `json:"batb"`  //available to back
+	Batl  [][3]float64 `json:"batl"`  //available to lay
+	Atb   [][2]float64 `json:"atb"`   //available to back
+	Atl   [][2]float64 `json:"atl"`   //available to lay
+	Trd   [][2]float64 `json:"trd"`   //traded bets
+	Spb   [][2]float64 `json:"spb"`   //starting price bets
+	Spl   [][2]float64 `json:"spl"`   //starting price lays
 }
 
 //
@@ -176,7 +176,7 @@ type RunnerDefinition struct {
 	Status       string  `json:"status,omitempty"`
 	SortPriority int     `json:"sortPriority,omitempty"`
 	Sp           float64 `json:"bsp,omitempty"`
-	SelectionID  int     `json:"id,omitempty"`
+	SelectionID  int64   `json:"id,omitempty"`
 }
 
 //
@@ -188,10 +188,10 @@ type OrderChange struct {
 //
 type RunnerOrder struct {
 	Image        bool             `json:"fullImage"`
-	SelectionID  int              `json:"id"`
+	SelectionID  int64            `json:"id"`
 	Unmatched    []UnmatchedOrder `json:"uo"`
-	MatchedBacks []ExchangeBet    `json:"mb"`
-	MatchedLays  []ExchangeBet    `json:"ml"`
+	MatchedBacks [][2]float64     `json:"mb"`
+	MatchedLays  [][2]float64     `json:"ml"`
 }
 
 //

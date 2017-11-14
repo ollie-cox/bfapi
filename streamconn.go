@@ -37,12 +37,12 @@ type Stream struct {
 }
 
 //
-func NewStream(hdlr StreamHandler, cntx interface{}) (*Stream, error) {
+func NewStream(hdlr StreamHandler, to time.Duration, cntx interface{}) (*Stream, error) {
 	var c *tls.Conn
 	var err error
 	var sc *Stream
 
-	c, err = tls.Dial("tcp", streamHost, &tls.Config{
+	c, err = tls.DialWithDialer(&net.Dialer{Timeout: to}, "tcp", streamHost, &tls.Config{
 		Certificates:       []tls.Certificate{certificate},
 		InsecureSkipVerify: true,
 		Renegotiation:      tls.RenegotiateFreelyAsClient,

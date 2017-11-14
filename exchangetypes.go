@@ -35,7 +35,7 @@ type MarketCatalogue struct {
 
 //
 type RunnerCatalogue struct {
-	SelectionID  int             `json:"selectionId,omitempty"`
+	SelectionID  int64           `json:"selectionId,omitempty"`
 	RunnerName   string          `json:"runnerName,omitempty"`
 	Handicap     float64         `json:"handicap,omitempty"`
 	SortPriority int             `json:"sortPriority,omitempty"`
@@ -137,16 +137,16 @@ type PriceLadderDescription struct {
 
 //
 type StartingPrice struct {
-	BackStakeTaken    []ExchangeBet `json:"backStakeTaken,omitempty"`
-	LayLiabilityTaken []ExchangeBet `json:"layLiabilityTaken,omitempty"`
-	ActualSP          float64       `json:"actualSP,omitempty"`
+	BackStakeTaken    []PriceSize `json:"backStakeTaken,omitempty"`
+	LayLiabilityTaken []PriceSize `json:"layLiabilityTaken,omitempty"`
+	ActualSP          float64     `json:"actualSP,omitempty"`
 }
 
 //
 type ExchangePrice struct {
-	AvailableToBack []ExchangeBet `json:"availableToBack,omitempty"`
-	AvailableToLay  []ExchangeBet `json:"availableToLay,omitempty"`
-	TradedVolume    []ExchangeBet `json:"tradedVolume,omitempty"`
+	AvailableToBack []PriceSize `json:"availableToBack,omitempty"`
+	AvailableToLay  []PriceSize `json:"availableToLay,omitempty"`
+	TradedVolume    []PriceSize `json:"tradedVolume,omitempty"`
 }
 
 //
@@ -242,19 +242,6 @@ type PriceSize struct {
 }
 
 //
-type ExchangeBet [2]float64
-
-//
-func (eb ExchangeBet) GetPrice() float64 {
-	return eb[0]
-}
-
-//
-func (eb ExchangeBet) GetSize() float64 {
-	return eb[1]
-}
-
-//
 type PlaceOrderArg struct {
 	MarketID            string             `json:"marketId,omitempty"`
 	Instructions        []PlaceInstruction `json:"instructions,omitempty"`
@@ -267,7 +254,7 @@ type PlaceOrderArg struct {
 //
 type PlaceInstruction struct {
 	OrderType          string              `json:"orderType,omitempty"`
-	SelectionID        int                 `json:"selectionId,omitempty"`
+	SelectionID        int64               `json:"selectionId,omitempty"`
 	Handicap           string              `json:"handicap,omitempty"`
 	Side               string              `json:"side,omitempty"`
 	LimitOrder         *LimitOrder         `json:"limitOrder,omitempty"`

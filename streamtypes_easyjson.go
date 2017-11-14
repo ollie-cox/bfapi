@@ -556,7 +556,7 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi3(in *jlexer.Lexer, out *RunnerOrde
 		case "fullImage":
 			out.Image = bool(in.Bool())
 		case "id":
-			out.SelectionID = int(in.Int())
+			out.SelectionID = int64(in.Int64())
 		case "uo":
 			if in.IsNull() {
 				in.Skip()
@@ -588,15 +588,15 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi3(in *jlexer.Lexer, out *RunnerOrde
 				in.Delim('[')
 				if out.MatchedBacks == nil {
 					if !in.IsDelim(']') {
-						out.MatchedBacks = make([]ExchangeBet, 0, 4)
+						out.MatchedBacks = make([][2]float64, 0, 4)
 					} else {
-						out.MatchedBacks = []ExchangeBet{}
+						out.MatchedBacks = [][2]float64{}
 					}
 				} else {
 					out.MatchedBacks = (out.MatchedBacks)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v2 ExchangeBet
+					var v2 [2]float64
 					if in.IsNull() {
 						in.Skip()
 					} else {
@@ -626,15 +626,15 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi3(in *jlexer.Lexer, out *RunnerOrde
 				in.Delim('[')
 				if out.MatchedLays == nil {
 					if !in.IsDelim(']') {
-						out.MatchedLays = make([]ExchangeBet, 0, 4)
+						out.MatchedLays = make([][2]float64, 0, 4)
 					} else {
-						out.MatchedLays = []ExchangeBet{}
+						out.MatchedLays = [][2]float64{}
 					}
 				} else {
 					out.MatchedLays = (out.MatchedLays)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v4 ExchangeBet
+					var v4 [2]float64
 					if in.IsNull() {
 						in.Skip()
 					} else {
@@ -681,7 +681,7 @@ func easyjson54c0b74dEncodeGithubComTarbBfapi3(out *jwriter.Writer, in RunnerOrd
 	}
 	first = false
 	out.RawString("\"id\":")
-	out.Int(int(in.SelectionID))
+	out.Int64(int64(in.SelectionID))
 	if !first {
 		out.RawByte(',')
 	}
@@ -799,7 +799,7 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi4(in *jlexer.Lexer, out *RunnerDefi
 		case "bsp":
 			out.Sp = float64(in.Float64())
 		case "id":
-			out.SelectionID = int(in.Int())
+			out.SelectionID = int64(in.Int64())
 		default:
 			in.SkipRecursive()
 		}
@@ -844,7 +844,7 @@ func easyjson54c0b74dEncodeGithubComTarbBfapi4(out *jwriter.Writer, in RunnerDef
 		}
 		first = false
 		out.RawString("\"id\":")
-		out.Int(int(in.SelectionID))
+		out.Int64(int64(in.SelectionID))
 	}
 	out.RawByte('}')
 }
@@ -892,7 +892,7 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi5(in *jlexer.Lexer, out *RunnerChan
 		}
 		switch key {
 		case "id":
-			out.ID = int(in.Int())
+			out.ID = int64(in.Int64())
 		case "spn":
 			out.Spn = float64(in.Float64())
 		case "ltp":
@@ -907,22 +907,22 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi5(in *jlexer.Lexer, out *RunnerChan
 				in.Delim('[')
 				if out.Bdatb == nil {
 					if !in.IsDelim(']') {
-						out.Bdatb = make([]ExchangeBet, 0, 4)
+						out.Bdatb = make([][3]float64, 0, 2)
 					} else {
-						out.Bdatb = []ExchangeBet{}
+						out.Bdatb = [][3]float64{}
 					}
 				} else {
 					out.Bdatb = (out.Bdatb)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v14 ExchangeBet
+					var v14 [3]float64
 					if in.IsNull() {
 						in.Skip()
 					} else {
 						in.Delim('[')
 						v15 := 0
 						for !in.IsDelim(']') {
-							if v15 < 2 {
+							if v15 < 3 {
 								v14[v15] = float64(in.Float64())
 								v15++
 							} else {
@@ -945,22 +945,22 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi5(in *jlexer.Lexer, out *RunnerChan
 				in.Delim('[')
 				if out.Bdatl == nil {
 					if !in.IsDelim(']') {
-						out.Bdatl = make([]ExchangeBet, 0, 4)
+						out.Bdatl = make([][3]float64, 0, 2)
 					} else {
-						out.Bdatl = []ExchangeBet{}
+						out.Bdatl = [][3]float64{}
 					}
 				} else {
 					out.Bdatl = (out.Bdatl)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v16 ExchangeBet
+					var v16 [3]float64
 					if in.IsNull() {
 						in.Skip()
 					} else {
 						in.Delim('[')
 						v17 := 0
 						for !in.IsDelim(']') {
-							if v17 < 2 {
+							if v17 < 3 {
 								v16[v17] = float64(in.Float64())
 								v17++
 							} else {
@@ -975,30 +975,30 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi5(in *jlexer.Lexer, out *RunnerChan
 				}
 				in.Delim(']')
 			}
-		case "atb":
+		case "batb":
 			if in.IsNull() {
 				in.Skip()
-				out.Atb = nil
+				out.Batb = nil
 			} else {
 				in.Delim('[')
-				if out.Atb == nil {
+				if out.Batb == nil {
 					if !in.IsDelim(']') {
-						out.Atb = make([]ExchangeBet, 0, 4)
+						out.Batb = make([][3]float64, 0, 2)
 					} else {
-						out.Atb = []ExchangeBet{}
+						out.Batb = [][3]float64{}
 					}
 				} else {
-					out.Atb = (out.Atb)[:0]
+					out.Batb = (out.Batb)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v18 ExchangeBet
+					var v18 [3]float64
 					if in.IsNull() {
 						in.Skip()
 					} else {
 						in.Delim('[')
 						v19 := 0
 						for !in.IsDelim(']') {
-							if v19 < 2 {
+							if v19 < 3 {
 								v18[v19] = float64(in.Float64())
 								v19++
 							} else {
@@ -1008,35 +1008,35 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi5(in *jlexer.Lexer, out *RunnerChan
 						}
 						in.Delim(']')
 					}
-					out.Atb = append(out.Atb, v18)
+					out.Batb = append(out.Batb, v18)
 					in.WantComma()
 				}
 				in.Delim(']')
 			}
-		case "atl":
+		case "batl":
 			if in.IsNull() {
 				in.Skip()
-				out.Atl = nil
+				out.Batl = nil
 			} else {
 				in.Delim('[')
-				if out.Atl == nil {
+				if out.Batl == nil {
 					if !in.IsDelim(']') {
-						out.Atl = make([]ExchangeBet, 0, 4)
+						out.Batl = make([][3]float64, 0, 2)
 					} else {
-						out.Atl = []ExchangeBet{}
+						out.Batl = [][3]float64{}
 					}
 				} else {
-					out.Atl = (out.Atl)[:0]
+					out.Batl = (out.Batl)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v20 ExchangeBet
+					var v20 [3]float64
 					if in.IsNull() {
 						in.Skip()
 					} else {
 						in.Delim('[')
 						v21 := 0
 						for !in.IsDelim(']') {
-							if v21 < 2 {
+							if v21 < 3 {
 								v20[v21] = float64(in.Float64())
 								v21++
 							} else {
@@ -1046,28 +1046,28 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi5(in *jlexer.Lexer, out *RunnerChan
 						}
 						in.Delim(']')
 					}
-					out.Atl = append(out.Atl, v20)
+					out.Batl = append(out.Batl, v20)
 					in.WantComma()
 				}
 				in.Delim(']')
 			}
-		case "batb":
+		case "atb":
 			if in.IsNull() {
 				in.Skip()
-				out.Batb = nil
+				out.Atb = nil
 			} else {
 				in.Delim('[')
-				if out.Batb == nil {
+				if out.Atb == nil {
 					if !in.IsDelim(']') {
-						out.Batb = make([]ExchangeBet, 0, 4)
+						out.Atb = make([][2]float64, 0, 4)
 					} else {
-						out.Batb = []ExchangeBet{}
+						out.Atb = [][2]float64{}
 					}
 				} else {
-					out.Batb = (out.Batb)[:0]
+					out.Atb = (out.Atb)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v22 ExchangeBet
+					var v22 [2]float64
 					if in.IsNull() {
 						in.Skip()
 					} else {
@@ -1084,28 +1084,28 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi5(in *jlexer.Lexer, out *RunnerChan
 						}
 						in.Delim(']')
 					}
-					out.Batb = append(out.Batb, v22)
+					out.Atb = append(out.Atb, v22)
 					in.WantComma()
 				}
 				in.Delim(']')
 			}
-		case "batl":
+		case "atl":
 			if in.IsNull() {
 				in.Skip()
-				out.Batl = nil
+				out.Atl = nil
 			} else {
 				in.Delim('[')
-				if out.Batl == nil {
+				if out.Atl == nil {
 					if !in.IsDelim(']') {
-						out.Batl = make([]ExchangeBet, 0, 4)
+						out.Atl = make([][2]float64, 0, 4)
 					} else {
-						out.Batl = []ExchangeBet{}
+						out.Atl = [][2]float64{}
 					}
 				} else {
-					out.Batl = (out.Batl)[:0]
+					out.Atl = (out.Atl)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v24 ExchangeBet
+					var v24 [2]float64
 					if in.IsNull() {
 						in.Skip()
 					} else {
@@ -1122,7 +1122,7 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi5(in *jlexer.Lexer, out *RunnerChan
 						}
 						in.Delim(']')
 					}
-					out.Batl = append(out.Batl, v24)
+					out.Atl = append(out.Atl, v24)
 					in.WantComma()
 				}
 				in.Delim(']')
@@ -1135,15 +1135,15 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi5(in *jlexer.Lexer, out *RunnerChan
 				in.Delim('[')
 				if out.Trd == nil {
 					if !in.IsDelim(']') {
-						out.Trd = make([]ExchangeBet, 0, 4)
+						out.Trd = make([][2]float64, 0, 4)
 					} else {
-						out.Trd = []ExchangeBet{}
+						out.Trd = [][2]float64{}
 					}
 				} else {
 					out.Trd = (out.Trd)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v26 ExchangeBet
+					var v26 [2]float64
 					if in.IsNull() {
 						in.Skip()
 					} else {
@@ -1173,15 +1173,15 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi5(in *jlexer.Lexer, out *RunnerChan
 				in.Delim('[')
 				if out.Spb == nil {
 					if !in.IsDelim(']') {
-						out.Spb = make([]ExchangeBet, 0, 4)
+						out.Spb = make([][2]float64, 0, 4)
 					} else {
-						out.Spb = []ExchangeBet{}
+						out.Spb = [][2]float64{}
 					}
 				} else {
 					out.Spb = (out.Spb)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v28 ExchangeBet
+					var v28 [2]float64
 					if in.IsNull() {
 						in.Skip()
 					} else {
@@ -1211,15 +1211,15 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi5(in *jlexer.Lexer, out *RunnerChan
 				in.Delim('[')
 				if out.Spl == nil {
 					if !in.IsDelim(']') {
-						out.Spl = make([]ExchangeBet, 0, 4)
+						out.Spl = make([][2]float64, 0, 4)
 					} else {
-						out.Spl = []ExchangeBet{}
+						out.Spl = [][2]float64{}
 					}
 				} else {
 					out.Spl = (out.Spl)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v30 ExchangeBet
+					var v30 [2]float64
 					if in.IsNull() {
 						in.Skip()
 					} else {
@@ -1260,7 +1260,7 @@ func easyjson54c0b74dEncodeGithubComTarbBfapi5(out *jwriter.Writer, in RunnerCha
 	}
 	first = false
 	out.RawString("\"id\":")
-	out.Int(int(in.ID))
+	out.Int64(int64(in.ID))
 	if !first {
 		out.RawByte(',')
 	}
@@ -1331,12 +1331,12 @@ func easyjson54c0b74dEncodeGithubComTarbBfapi5(out *jwriter.Writer, in RunnerCha
 		out.RawByte(',')
 	}
 	first = false
-	out.RawString("\"atb\":")
-	if in.Atb == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+	out.RawString("\"batb\":")
+	if in.Batb == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
 		out.RawString("null")
 	} else {
 		out.RawByte('[')
-		for v38, v39 := range in.Atb {
+		for v38, v39 := range in.Batb {
 			if v38 > 0 {
 				out.RawByte(',')
 			}
@@ -1355,12 +1355,12 @@ func easyjson54c0b74dEncodeGithubComTarbBfapi5(out *jwriter.Writer, in RunnerCha
 		out.RawByte(',')
 	}
 	first = false
-	out.RawString("\"atl\":")
-	if in.Atl == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+	out.RawString("\"batl\":")
+	if in.Batl == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
 		out.RawString("null")
 	} else {
 		out.RawByte('[')
-		for v41, v42 := range in.Atl {
+		for v41, v42 := range in.Batl {
 			if v41 > 0 {
 				out.RawByte(',')
 			}
@@ -1379,12 +1379,12 @@ func easyjson54c0b74dEncodeGithubComTarbBfapi5(out *jwriter.Writer, in RunnerCha
 		out.RawByte(',')
 	}
 	first = false
-	out.RawString("\"batb\":")
-	if in.Batb == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+	out.RawString("\"atb\":")
+	if in.Atb == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
 		out.RawString("null")
 	} else {
 		out.RawByte('[')
-		for v44, v45 := range in.Batb {
+		for v44, v45 := range in.Atb {
 			if v44 > 0 {
 				out.RawByte(',')
 			}
@@ -1403,12 +1403,12 @@ func easyjson54c0b74dEncodeGithubComTarbBfapi5(out *jwriter.Writer, in RunnerCha
 		out.RawByte(',')
 	}
 	first = false
-	out.RawString("\"batl\":")
-	if in.Batl == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+	out.RawString("\"atl\":")
+	if in.Atl == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
 		out.RawString("null")
 	} else {
 		out.RawByte('[')
-		for v47, v48 := range in.Batl {
+		for v47, v48 := range in.Atl {
 			if v47 > 0 {
 				out.RawByte(',')
 			}
