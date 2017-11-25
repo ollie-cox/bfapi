@@ -173,10 +173,13 @@ type MarketDefinition struct {
 
 //
 type RunnerDefinition struct {
-	Status       string  `json:"status,omitempty"`
-	SortPriority int     `json:"sortPriority,omitempty"`
-	Sp           float64 `json:"bsp,omitempty"`
-	SelectionID  int64   `json:"id,omitempty"`
+	Status           string    `json:"status,omitempty"`
+	SortPriority     int       `json:"sortPriority,omitempty"`
+	Sp               float64   `json:"bsp,omitempty"`
+	SelectionID      int64     `json:"id,omitempty"`
+	AdjustmentFactor float64   `json:"adjustmentFactor,omitempty"`
+	RemovalDate      time.Time `json:"removalDate,omitempty"`
+	Handicap         float64   `json:"hc,omitempty"`
 }
 
 //
