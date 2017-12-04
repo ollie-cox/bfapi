@@ -800,6 +800,14 @@ func easyjson54c0b74dDecodeGithubComTarbBfapi4(in *jlexer.Lexer, out *RunnerDefi
 			out.Sp = float64(in.Float64())
 		case "id":
 			out.SelectionID = int64(in.Int64())
+		case "adjustmentFactor":
+			out.AdjustmentFactor = float64(in.Float64())
+		case "removalDate":
+			if data := in.Raw(); in.Ok() {
+				in.AddError((out.RemovalDate).UnmarshalJSON(data))
+			}
+		case "hc":
+			out.Handicap = float64(in.Float64())
 		default:
 			in.SkipRecursive()
 		}
@@ -845,6 +853,30 @@ func easyjson54c0b74dEncodeGithubComTarbBfapi4(out *jwriter.Writer, in RunnerDef
 		first = false
 		out.RawString("\"id\":")
 		out.Int64(int64(in.SelectionID))
+	}
+	if in.AdjustmentFactor != 0 {
+		if !first {
+			out.RawByte(',')
+		}
+		first = false
+		out.RawString("\"adjustmentFactor\":")
+		out.Float64(float64(in.AdjustmentFactor))
+	}
+	if true {
+		if !first {
+			out.RawByte(',')
+		}
+		first = false
+		out.RawString("\"removalDate\":")
+		out.Raw((in.RemovalDate).MarshalJSON())
+	}
+	if in.Handicap != 0 {
+		if !first {
+			out.RawByte(',')
+		}
+		first = false
+		out.RawString("\"hc\":")
+		out.Float64(float64(in.Handicap))
 	}
 	out.RawByte('}')
 }
