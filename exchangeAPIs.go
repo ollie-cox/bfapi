@@ -77,3 +77,15 @@ func UpdateOrders(ins []UpdateInstruction) (UpdateExecutionReport, error) {
 
 	return result, err
 }
+
+//
+func ListClearedOrders(arg ListClearedOrdersArgs) (ClearedOrderSummaryReport, error) {
+	var err error
+	var result ClearedOrderSummaryReport
+
+	err = www.Build(http.MethodPost, scheme, exchangeHost, listClearedOrders).
+		WithJSONBody(arg).
+		CollectJSON(&result)
+
+	return result, err
+}

@@ -3,11 +3,9 @@ package bfapi
 import (
 	"crypto/rand"
 	"crypto/tls"
-	"encoding/json"
 	"log"
 	"net"
 	"net/http"
-	"os"
 	"time"
 
 	"github.com/tarb/www"
@@ -15,12 +13,12 @@ import (
 
 //
 type Config struct {
-	CertFile string
-	KeyFile  string
-	AppKey   string
-	Username string
-	Password string
-	Testing  bool
+	CertFile string `json:"certFile"`
+	KeyFile  string `json:"keyFile"`
+	AppKey   string `json:"appKey"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Testing  bool   `json:"testing"`
 }
 
 const (
@@ -45,6 +43,7 @@ const (
 	// Supported exchange method paths
 	listMarketCatalogue string = "/exchange/betting/rest/v1.0/listMarketCatalogue/"
 	listMarketBook      string = "/exchange/betting/rest/v1.0/listMarketBook/"
+	listClearedOrders   string = "/exchange/betting/rest/v1.0/listClearedOrders/"
 	cancelOrders        string = "/exchange/betting/rest/v1.0/cancelOrders/"
 	placeOrders         string = "/exchange/betting/rest/v1.0/placeOrders/"
 	replaceOrders       string = "/exchange/betting/rest/v1.0/replaceOrders/"
@@ -108,24 +107,4 @@ func Init(cfg Config) {
 		h.Set("Accept", "application/json")
 		h.Set("Connection", "keep-alive")
 	})
-}
-
-//
-func InitWithCfgFile(path string) {
-	var err error
-	var file *os.File
-
-	//open file
-	if file, err = os.Open(path); err != nil {
-		log.Fatalln("Fatal: Error opening config file > ", err.Error())
-	}
-	defer file.Close()
-
-	//read json into new config struct
-	var cfg Config
-	if err = json.NewDecoder(file).Decode(&cfg); err != nil {
-		log.Fatalln("Fatal: Error parsing config file > ", err.Error())
-	}
-
-	Init(cfg)
 }

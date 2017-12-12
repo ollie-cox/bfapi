@@ -26,11 +26,6 @@ type Stream struct {
 	conn   net.Conn
 	closer sync.Once
 
-	// for scheduled closes
-	tiMut sync.Mutex
-	tiDur time.Duration
-	timer *time.Timer
-
 	chanOut chan interface{}
 	handler StreamHandler
 	context interface{}
@@ -150,23 +145,4 @@ func (sc *Stream) Close() {
 		close(sc.chanOut)
 		sc.handler.OnClose(sc.context)
 	})
-}
-
-//
-func (sc *Stream) ScheduleClose(in time.Duration) {
-	sc.tiMut.Lock()
-	if sc.timer == nil {
-		sc.tiDur = in
-		sc.timer = time.AfterFunc(in, sc.Close)
-	}
-	sc.tiMut.Unlock()
-}
-
-//
-func (sc *Stream) ResetClose() {
-	sc.tiMut.Lock()
-	if sc.timer != nil && sc.timer.Stop() {
-		sc.timer.Reset(sc.tiDur)
-	}
-	sc.tiMut.Unlock()
 }

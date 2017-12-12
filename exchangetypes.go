@@ -408,3 +408,74 @@ type UpdateExecutionReport struct {
 	MarketID           string                    `json:"marketId,omitempty"`
 	InstructionReports []UpdateInstructionReport `json:"instructionReports,omitempty"`
 }
+
+//
+type ListClearedOrdersArgs struct {
+	BetStatus              string     `json:"betStatus,omitempty"` //SETTLED | VOIDED | LAPSED | CANCELLED
+	EventTypeIDs           []string   `json:"eventTypeIds,omitempty"`
+	EventIDs               []string   `json:"eventIds,omitempty"`
+	MarketIDs              []string   `json:"marketIds,omitempty"`
+	RunnerIDs              []int64    `json:"runnerIds,omitempty"`
+	BetIDs                 []string   `json:"betIds,omitempty"`
+	CustomerOrderRefs      []string   `json:"customerOrderRefs,omitempty"`
+	CustomerStrategyRefs   []string   `json:"customerStrategyRefs,omitempty"`
+	Side                   string     `json:"side,omitempty"` // BACK | LAY
+	SettledDateRange       *TimeRange `json:"settledDateRange,omitempty"`
+	GroupBy                string     `json:"groupBy,omitempty"` // EVENT_TYPE | EVENT | MARKET | SIDE | BET
+	IncludeItemDescription bool       `json:"includeItemDescription,omitempty"`
+	Locale                 string     `json:"locale,omitempty"`
+	FromRecord             int        `json:"fromRecord,omitempty"`
+	RecordCount            int        `json:"recordCount,omitempty"`
+}
+
+//
+type ClearedOrderSummaryReport struct {
+	ClearedOrders []ClearedOrderSummary `json:"clearedOrders"`
+	MoreAvailable bool                  `json:"moreAvailable"`
+}
+
+//
+type ClearedOrderSummary struct {
+	EventTypeID         string           `json:"eventTypeId"`
+	EventID             string           `json:"eventId"`
+	MarketID            string           `json:"marketId"`
+	SelectionID         int64            `json:"selectionId"`
+	Handicap            float64          `json:"handicap"`
+	BetID               string           `json:"betId"`
+	PlacedDate          time.Time        `json:"placedDate"`
+	PersistenceType     string           `json:"persistenceType"` // LAPSE | PERSIST | MARKET_ON_CLOSE
+	OrderType           string           `json:"orderType"`       // LIMIT | LIMIT_ON_CLOSE | MARKET_ON_CLOSE
+	Side                string           `json:"side"`            // BACK | LAY
+	ItemDescription     *ItemDescription `json:"itemDescription"`
+	BetOutcome          string           `json:"betOutcome"`
+	PriceRequested      float64          `json:"priceRequested"`
+	SettledDate         time.Time        `json:"settledDate"`
+	LastMatchedDate     time.Time        `json:"lastMatchedDate"`
+	BetCount            int              `json:"betCount"`
+	Commission          float64          `json:"commission"`
+	PriceMatched        float64          `json:"priceMatched"`
+	PriceReduced        bool             `json:"priceReduced"`
+	SizeSettled         float64          `json:"sizeSettled"`
+	Profit              float64          `json:"profit"`
+	SizeCancelled       float64          `json:"sizeCancelled"`
+	CustomerOrderRef    string           `json:"customerOrderRef"`
+	CustomerStrategyRef string           `json:"customerStrategyRef"`
+}
+
+//
+type ItemDescription struct {
+	EventTypeDesc   string    `json:"eventTypeDesc"`
+	EventDesc       string    `json:"eventDesc"`
+	MarketDesc      string    `json:"marketDesc"`
+	MarketType      string    `json:"marketType"`
+	MarketStartTime time.Time `json:"marketStartTime"`
+	RunnerDesc      string    `json:"runnerDesc"`
+	NumberOfWinners int       `json:"numberOfWinners"`
+	EachWayDivisor  float64   `json:"eachWayDivisor"`
+}
+
+//
+type TimeRange struct {
+	To   time.Time `json:"to"`
+	From time.Time `json:"from"`
+}
