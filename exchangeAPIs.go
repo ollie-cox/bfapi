@@ -1,6 +1,7 @@
 package bfapi
 
 import (
+	"io/ioutil"
 	"net/http"
 
 	"github.com/tarb/www"
@@ -87,5 +88,23 @@ func ListClearedOrders(arg ListClearedOrdersArgs) (ClearedOrderSummaryReport, er
 		WithJSONBody(arg).
 		CollectJSON(&result)
 
+	return result, err
+}
+
+// GetMarketMenuJSON   Collects JSON Market Menu from Betfair API
+func GetMarketMenuJSON() ([]byte, error) {
+	var err error
+	var result []byte
+	var resp *http.Response
+
+	resp, err = www.Build(http.MethodPost, scheme, exchangeHost, getMarketMenuJSON).
+		CollectResponse()
+
+	if err != nil {
+		return nil, err
+	}
+
+	result, err = ioutil.ReadAll(resp.Body)
+	resp.Body.Close()
 	return result, err
 }

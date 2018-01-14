@@ -40,6 +40,9 @@ const (
 	getAccountFunds   string = "/exchange/account/rest/v1.0/getAccountFunds/"
 	getAccountDetails string = "/exchange/account/rest/v1.0/getAccountDetails/"
 
+	// Market menu
+	getMarketMenuJSON string = "/exchange/betting/rest/v1/en/navigation/menu.json/"
+
 	// Supported exchange method paths
 	listMarketCatalogue string = "/exchange/betting/rest/v1.0/listMarketCatalogue/"
 	listMarketBook      string = "/exchange/betting/rest/v1.0/listMarketBook/"
