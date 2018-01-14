@@ -97,7 +97,7 @@ func GetMarketMenuJSON() ([]byte, error) {
 	var result []byte
 	var resp *http.Response
 
-	resp, err = www.Build(http.MethodPost, scheme, exchangeHost, getMarketMenuJSON).
+	resp, err = www.Build(http.MethodGet, scheme, exchangeHost, getMarketMenuJSON).
 		CollectResponse()
 
 	if err != nil {
