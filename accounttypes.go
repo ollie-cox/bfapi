@@ -1,5 +1,7 @@
 package bfapi
 
+import "time"
+
 // AccountFundsResponse - response from getAccountFunds
 type AccountFundsResponse struct {
 	AvailableBalance   float64 `json:"availableToBetBalance,omitempty"` //Amount available to bet.
@@ -21,4 +23,22 @@ type AccountDetailsResponse struct {
 	DiscountRate  float64 `json:"discountRate,omitempty"`
 	PointsBalance int     `json:"pointsBalance,omitempty"`
 	CountryCode   string  `json:"countryCode,omitempty"`
+}
+
+//GetSubTokenArg - argument for GetSubscriptionToken
+type GetSubTokenArg struct {
+	SubscriptionLength int    `json:"subscriptionLength,omitempty"` //number of days
+	ClientReference    string `json:"clientReference,omitempty"`
+}
+
+//SubscriptionHistory - response from getApplicationSubscriptionHistory
+type SubscriptionHistory struct {
+	SubscriptionToken    string    `json:"subscriptionToken,omitempty"`    //Application key identifier
+	ExpiryDateTime       time.Time `json:"expiryDateTime,omitempty"`       //Subscription Expiry date
+	ExpiredDateTime      time.Time `json:"expiredDateTime,omitempty"`      //Subscription Expired date
+	CreatedDateTime      time.Time `json:"createdDateTime,omitempty"`      //Subscription Create date
+	ActivationDateTime   time.Time `json:"activationDateTime,omitempty"`   //Subscription Activation date
+	CancellationDateTime time.Time `json:"cancellationDateTime,omitempty"` //Subscription Cancelled date
+	SubscriptionStatus   string    `json:"subscriptionStatus,omitempty"`   //Subscription status {ALL, ACTIVATED, UNACTIVATED, CANCELLED, EXPIRED}
+	ClientReference      string    `json:"clientReference,omitempty"`      //Client reference
 }

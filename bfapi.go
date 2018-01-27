@@ -37,8 +37,9 @@ const (
 	keepAlive string = "/api/keepAlive/"
 
 	// Supported account method paths
-	getAccountFunds   string = "/exchange/account/rest/v1.0/getAccountFunds/"
-	getAccountDetails string = "/exchange/account/rest/v1.0/getAccountDetails/"
+	getAccountFunds                   string = "/exchange/account/rest/v1.0/getAccountFunds/"
+	getAccountDetails                 string = "/exchange/account/rest/v1.0/getAccountDetails/"
+	getApplicationSubscriptionHistory string = "/exchange/account/rest/v1.0/getApplicationSubscriptionHistory/"
 
 	// Supported exchange method paths
 	listMarketCatalogue string = "/exchange/betting/rest/v1.0/listMarketCatalogue/"

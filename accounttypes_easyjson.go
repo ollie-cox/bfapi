@@ -17,7 +17,255 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjsonCaf77204DecodeGithubComTarbBfapi(in *jlexer.Lexer, out *AccountFundsResponse) {
+func easyjsonCaf77204DecodeGithubComTarbBfapi(in *jlexer.Lexer, out *SubscriptionHistory) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeString()
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "subscriptionToken":
+			out.SubscriptionToken = string(in.String())
+		case "expiryDateTime":
+			if data := in.Raw(); in.Ok() {
+				in.AddError((out.ExpiryDateTime).UnmarshalJSON(data))
+			}
+		case "expiredDateTime":
+			if data := in.Raw(); in.Ok() {
+				in.AddError((out.ExpiredDateTime).UnmarshalJSON(data))
+			}
+		case "createdDateTime":
+			if data := in.Raw(); in.Ok() {
+				in.AddError((out.CreatedDateTime).UnmarshalJSON(data))
+			}
+		case "activationDateTime":
+			if data := in.Raw(); in.Ok() {
+				in.AddError((out.ActivationDateTime).UnmarshalJSON(data))
+			}
+		case "cancellationDateTime":
+			if data := in.Raw(); in.Ok() {
+				in.AddError((out.CancellationDateTime).UnmarshalJSON(data))
+			}
+		case "subscriptionStatus":
+			out.SubscriptionStatus = string(in.String())
+		case "clientReference":
+			out.ClientReference = string(in.String())
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonCaf77204EncodeGithubComTarbBfapi(out *jwriter.Writer, in SubscriptionHistory) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	if in.SubscriptionToken != "" {
+		const prefix string = ",\"subscriptionToken\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.SubscriptionToken))
+	}
+	if true {
+		const prefix string = ",\"expiryDateTime\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.ExpiryDateTime).MarshalJSON())
+	}
+	if true {
+		const prefix string = ",\"expiredDateTime\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.ExpiredDateTime).MarshalJSON())
+	}
+	if true {
+		const prefix string = ",\"createdDateTime\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.CreatedDateTime).MarshalJSON())
+	}
+	if true {
+		const prefix string = ",\"activationDateTime\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.ActivationDateTime).MarshalJSON())
+	}
+	if true {
+		const prefix string = ",\"cancellationDateTime\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.CancellationDateTime).MarshalJSON())
+	}
+	if in.SubscriptionStatus != "" {
+		const prefix string = ",\"subscriptionStatus\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.SubscriptionStatus))
+	}
+	if in.ClientReference != "" {
+		const prefix string = ",\"clientReference\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.ClientReference))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v SubscriptionHistory) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonCaf77204EncodeGithubComTarbBfapi(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v SubscriptionHistory) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonCaf77204EncodeGithubComTarbBfapi(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *SubscriptionHistory) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonCaf77204DecodeGithubComTarbBfapi(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *SubscriptionHistory) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonCaf77204DecodeGithubComTarbBfapi(l, v)
+}
+func easyjsonCaf77204DecodeGithubComTarbBfapi1(in *jlexer.Lexer, out *GetSubTokenArg) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeString()
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "subscriptionLength":
+			out.SubscriptionLength = int(in.Int())
+		case "clientReference":
+			out.ClientReference = string(in.String())
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonCaf77204EncodeGithubComTarbBfapi1(out *jwriter.Writer, in GetSubTokenArg) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	if in.SubscriptionLength != 0 {
+		const prefix string = ",\"subscriptionLength\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Int(int(in.SubscriptionLength))
+	}
+	if in.ClientReference != "" {
+		const prefix string = ",\"clientReference\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.ClientReference))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v GetSubTokenArg) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonCaf77204EncodeGithubComTarbBfapi1(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v GetSubTokenArg) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonCaf77204EncodeGithubComTarbBfapi1(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *GetSubTokenArg) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonCaf77204DecodeGithubComTarbBfapi1(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *GetSubTokenArg) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonCaf77204DecodeGithubComTarbBfapi1(l, v)
+}
+func easyjsonCaf77204DecodeGithubComTarbBfapi2(in *jlexer.Lexer, out *AccountFundsResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -58,56 +306,68 @@ func easyjsonCaf77204DecodeGithubComTarbBfapi(in *jlexer.Lexer, out *AccountFund
 		in.Consumed()
 	}
 }
-func easyjsonCaf77204EncodeGithubComTarbBfapi(out *jwriter.Writer, in AccountFundsResponse) {
+func easyjsonCaf77204EncodeGithubComTarbBfapi2(out *jwriter.Writer, in AccountFundsResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
 	if in.AvailableBalance != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"availableToBetBalance\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"availableToBetBalance\":")
 		out.Float64(float64(in.AvailableBalance))
 	}
 	if in.Exposure != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"exposure\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"exposure\":")
 		out.Float64(float64(in.Exposure))
 	}
 	if in.RetainedCommission != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"retainedCommission\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"retainedCommission\":")
 		out.Float64(float64(in.RetainedCommission))
 	}
 	if in.ExposureLimit != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"exposureLimit\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"exposureLimit\":")
 		out.Float64(float64(in.ExposureLimit))
 	}
 	if in.DiscountRate != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"discountRate\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"discountRate\":")
 		out.Float64(float64(in.DiscountRate))
 	}
 	if in.PointsBalance != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"pointsBalance\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"pointsBalance\":")
 		out.Int(int(in.PointsBalance))
 	}
 	out.RawByte('}')
@@ -116,27 +376,27 @@ func easyjsonCaf77204EncodeGithubComTarbBfapi(out *jwriter.Writer, in AccountFun
 // MarshalJSON supports json.Marshaler interface
 func (v AccountFundsResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonCaf77204EncodeGithubComTarbBfapi(&w, v)
+	easyjsonCaf77204EncodeGithubComTarbBfapi2(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v AccountFundsResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonCaf77204EncodeGithubComTarbBfapi(w, v)
+	easyjsonCaf77204EncodeGithubComTarbBfapi2(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *AccountFundsResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonCaf77204DecodeGithubComTarbBfapi(&r, v)
+	easyjsonCaf77204DecodeGithubComTarbBfapi2(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *AccountFundsResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonCaf77204DecodeGithubComTarbBfapi(l, v)
+	easyjsonCaf77204DecodeGithubComTarbBfapi2(l, v)
 }
-func easyjsonCaf77204DecodeGithubComTarbBfapi1(in *jlexer.Lexer, out *AccountDetailsResponse) {
+func easyjsonCaf77204DecodeGithubComTarbBfapi3(in *jlexer.Lexer, out *AccountDetailsResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -183,80 +443,98 @@ func easyjsonCaf77204DecodeGithubComTarbBfapi1(in *jlexer.Lexer, out *AccountDet
 		in.Consumed()
 	}
 }
-func easyjsonCaf77204EncodeGithubComTarbBfapi1(out *jwriter.Writer, in AccountDetailsResponse) {
+func easyjsonCaf77204EncodeGithubComTarbBfapi3(out *jwriter.Writer, in AccountDetailsResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
 	if in.CurrencyCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"currencyCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"currencyCode\":")
 		out.String(string(in.CurrencyCode))
 	}
 	if in.FirstName != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"firstName\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"firstName\":")
 		out.String(string(in.FirstName))
 	}
 	if in.LastName != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"lastName\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"lastName\":")
 		out.String(string(in.LastName))
 	}
 	if in.LocaleCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"localeCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"localeCode\":")
 		out.String(string(in.LocaleCode))
 	}
 	if in.Region != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"region\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"region\":")
 		out.String(string(in.Region))
 	}
 	if in.Timezone != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"timezone\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"timezone\":")
 		out.String(string(in.Timezone))
 	}
 	if in.DiscountRate != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"discountRate\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"discountRate\":")
 		out.Float64(float64(in.DiscountRate))
 	}
 	if in.PointsBalance != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"pointsBalance\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"pointsBalance\":")
 		out.Int(int(in.PointsBalance))
 	}
 	if in.CountryCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"countryCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"countryCode\":")
 		out.String(string(in.CountryCode))
 	}
 	out.RawByte('}')
@@ -265,23 +543,23 @@ func easyjsonCaf77204EncodeGithubComTarbBfapi1(out *jwriter.Writer, in AccountDe
 // MarshalJSON supports json.Marshaler interface
 func (v AccountDetailsResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonCaf77204EncodeGithubComTarbBfapi1(&w, v)
+	easyjsonCaf77204EncodeGithubComTarbBfapi3(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v AccountDetailsResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonCaf77204EncodeGithubComTarbBfapi1(w, v)
+	easyjsonCaf77204EncodeGithubComTarbBfapi3(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *AccountDetailsResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonCaf77204DecodeGithubComTarbBfapi1(&r, v)
+	easyjsonCaf77204DecodeGithubComTarbBfapi3(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *AccountDetailsResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonCaf77204DecodeGithubComTarbBfapi1(l, v)
+	easyjsonCaf77204DecodeGithubComTarbBfapi3(l, v)
 }
