@@ -34,6 +34,7 @@ const (
 
 	// Supported login method paths
 	certLogin string = "/api/certlogin/"
+	login     string = "/api/login"
 	keepAlive string = "/api/keepAlive/"
 
 	// Supported account method paths
@@ -58,11 +59,8 @@ var (
 	streamHost   string
 
 	certificate tls.Certificate
-
-	username string
-	password string
-	appKey   string
-	token    string
+	appKey      string
+	token       string
 )
 
 // Init creates a new http.Client, sets up default headers and configures
@@ -70,22 +68,15 @@ var (
 // certBytes, keyBytes - sed to make the certificate used in the http.Client
 // appkey - default header value for X-Application <appkey>
 // testing - sets which host is used in urls - production or testing
-func Init(cfg Config) {
+func Init(appKey, certFile, keyFile string) {
 	var err error
 
 	// store the config vars
-	if certificate, err = tls.LoadX509KeyPair(cfg.CertFile, cfg.KeyFile); err != nil {
+	if certificate, err = tls.LoadX509KeyPair(certFile, keyFile); err != nil {
 		log.Fatal("Error initilizing bfapi > ", err)
 	}
 
-	username = cfg.Username
-	password = cfg.Password
-	appKey = cfg.AppKey
-	if cfg.Testing {
-		exchangeHost, accountHost, streamHost = testHost, testHost, testStreamHost
-	} else {
-		exchangeHost, accountHost, streamHost = prodExchangeHost, prodAccountHost, prodStreamHost
-	}
+	exchangeHost, accountHost, streamHost = prodExchangeHost, prodAccountHost, prodStreamHost
 
 	// set up https client with supplied cert
 	var transport = &http.Transport{
@@ -105,8 +96,13 @@ func Init(cfg Config) {
 
 	// X-Authentication SessionToken is set in defaults after successful certLogin
 	www.SetDefaultHeaders(func(h http.Header) {
-		h.Set("X-Application", cfg.AppKey)
+		h.Set("X-Application", appKey)
 		h.Set("Accept", "application/json")
 		h.Set("Connection", "keep-alive")
 	})
+}
+
+//
+func TestingMode() {
+	exchangeHost, accountHost, streamHost = testHost, testHost, testStreamHost
 }

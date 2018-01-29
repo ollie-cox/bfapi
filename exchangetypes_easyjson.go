@@ -78,22 +78,24 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi(out *jwriter.Writer, in UpdateOrde
 	first := true
 	_ = first
 	if in.MarketID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketId\":")
 		out.String(string(in.MarketID))
 	}
 	if len(in.Instructions) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"instructions\":")
-		if in.Instructions == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"instructions\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v2, v3 := range in.Instructions {
 				if v2 > 0 {
@@ -105,11 +107,13 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi(out *jwriter.Writer, in UpdateOrde
 		}
 	}
 	if in.CustomerRef != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"customerRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"customerRef\":")
 		out.String(string(in.CustomerRef))
 	}
 	out.RawByte('}')
@@ -178,27 +182,33 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi1(out *jwriter.Writer, in UpdateIns
 	first := true
 	_ = first
 	if in.Status != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"status\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"status\":")
 		out.String(string(in.Status))
 	}
 	if in.ErrorCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"errorCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"errorCode\":")
 		out.String(string(in.ErrorCode))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"instruction\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"instruction\":")
 		(in.Instruction).MarshalEasyJSON(out)
 	}
 	out.RawByte('}')
@@ -265,19 +275,23 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi2(out *jwriter.Writer, in UpdateIns
 	first := true
 	_ = first
 	if in.BetID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"betId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"betId\":")
 		out.String(string(in.BetID))
 	}
 	if in.NewPersistenceType != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"newPersistenceType\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"newPersistenceType\":")
 		out.String(string(in.NewPersistenceType))
 	}
 	out.RawByte('}')
@@ -371,46 +385,54 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi3(out *jwriter.Writer, in UpdateExe
 	first := true
 	_ = first
 	if in.CustomerRef != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"customerRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"customerRef\":")
 		out.String(string(in.CustomerRef))
 	}
 	if in.Status != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"status\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"status\":")
 		out.String(string(in.Status))
 	}
 	if in.ErrorCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"errorCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"errorCode\":")
 		out.String(string(in.ErrorCode))
 	}
 	if in.MarketID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketId\":")
 		out.String(string(in.MarketID))
 	}
 	if len(in.InstructionReports) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"instructionReports\":")
-		if in.InstructionReports == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"instructionReports\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v5, v6 := range in.InstructionReports {
 				if v5 > 0 {
@@ -488,18 +510,26 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi4(out *jwriter.Writer, in TimeRange
 	out.RawByte('{')
 	first := true
 	_ = first
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"to\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.To).MarshalJSON())
 	}
-	first = false
-	out.RawString("\"to\":")
-	out.Raw((in.To).MarshalJSON())
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"from\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.From).MarshalJSON())
 	}
-	first = false
-	out.RawString("\"from\":")
-	out.Raw((in.From).MarshalJSON())
 	out.RawByte('}')
 }
 
@@ -612,30 +642,34 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi5(out *jwriter.Writer, in StartingP
 	first := true
 	_ = first
 	if in.NearPrice != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"nearPrice\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"nearPrice\":")
 		out.Float64(float64(in.NearPrice))
 	}
 	if in.FarPrice != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"farPrice\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"farPrice\":")
 		out.Float64(float64(in.FarPrice))
 	}
 	if len(in.BackStakeTaken) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"backStakeTaken\":")
-		if in.BackStakeTaken == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"backStakeTaken\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v9, v10 := range in.BackStakeTaken {
 				if v9 > 0 {
@@ -647,14 +681,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi5(out *jwriter.Writer, in StartingP
 		}
 	}
 	if len(in.LayLiabilityTaken) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"layLiabilityTaken\":")
-		if in.LayLiabilityTaken == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"layLiabilityTaken\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v11, v12 := range in.LayLiabilityTaken {
 				if v11 > 0 {
@@ -666,11 +700,13 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi5(out *jwriter.Writer, in StartingP
 		}
 	}
 	if in.ActualSP != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"actualSP\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"actualSP\":")
 		out.Float64(float64(in.ActualSP))
 	}
 	out.RawByte('}')
@@ -781,14 +817,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi6(out *jwriter.Writer, in StartingP
 	first := true
 	_ = first
 	if len(in.BackStakeTaken) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"backStakeTaken\":")
-		if in.BackStakeTaken == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"backStakeTaken\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v15, v16 := range in.BackStakeTaken {
 				if v15 > 0 {
@@ -800,14 +836,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi6(out *jwriter.Writer, in StartingP
 		}
 	}
 	if len(in.LayLiabilityTaken) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"layLiabilityTaken\":")
-		if in.LayLiabilityTaken == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"layLiabilityTaken\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v17, v18 := range in.LayLiabilityTaken {
 				if v17 > 0 {
@@ -819,11 +855,13 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi6(out *jwriter.Writer, in StartingP
 		}
 	}
 	if in.ActualSP != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"actualSP\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"actualSP\":")
 		out.Float64(float64(in.ActualSP))
 	}
 	out.RawByte('}')
@@ -1206,388 +1244,324 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi7(out *jwriter.Writer, in RunnerMet
 	first := true
 	_ = first
 	if in.SireName != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"SIRE_NAME\":")
-		if in.SireName == nil {
-			out.RawString("null")
+		const prefix string = ",\"SIRE_NAME\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.SireName))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.SireName))
 	}
 	if in.ClothNumberAlpha != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"CLOTH_NUMBER_ALPHA\":")
-		if in.ClothNumberAlpha == nil {
-			out.RawString("null")
+		const prefix string = ",\"CLOTH_NUMBER_ALPHA\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.ClothNumberAlpha))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.ClothNumberAlpha))
 	}
 	if in.OfficialRating != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"OFFICIAL_RATING\":")
-		if in.OfficialRating == nil {
-			out.RawString("null")
+		const prefix string = ",\"OFFICIAL_RATING\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.OfficialRating))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.OfficialRating))
 	}
 	if in.ColoursDescription != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"COLOURS_DESCRIPTION\":")
-		if in.ColoursDescription == nil {
-			out.RawString("null")
+		const prefix string = ",\"COLOURS_DESCRIPTION\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.ColoursDescription))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.ColoursDescription))
 	}
 	if in.ColoursFileName != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"COLOURS_FILENAME\":")
-		if in.ColoursFileName == nil {
-			out.RawString("null")
+		const prefix string = ",\"COLOURS_FILENAME\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.ColoursFileName))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.ColoursFileName))
 	}
 	if in.ForecastPriceDenominator != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"FORECASTPRICE_DENOMINATOR\":")
-		if in.ForecastPriceDenominator == nil {
-			out.RawString("null")
+		const prefix string = ",\"FORECASTPRICE_DENOMINATOR\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.ForecastPriceDenominator))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.ForecastPriceDenominator))
 	}
 	if in.DamSireName != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"DAMSIRE_NAME\":")
-		if in.DamSireName == nil {
-			out.RawString("null")
+		const prefix string = ",\"DAMSIRE_NAME\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.DamSireName))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.DamSireName))
 	}
 	if in.WeightValue != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"WEIGHT_VALUE\":")
-		if in.WeightValue == nil {
-			out.RawString("null")
+		const prefix string = ",\"WEIGHT_VALUE\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.WeightValue))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.WeightValue))
 	}
 	if in.SexType != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"SEX_TYPE\":")
-		if in.SexType == nil {
-			out.RawString("null")
+		const prefix string = ",\"SEX_TYPE\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.SexType))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.SexType))
 	}
 	if in.DaysSinceLastRun != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"DAYS_SINCE_LAST_RUN\":")
-		if in.DaysSinceLastRun == nil {
-			out.RawString("null")
+		const prefix string = ",\"DAYS_SINCE_LAST_RUN\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.DaysSinceLastRun))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.DaysSinceLastRun))
 	}
 	if in.Wearing != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"WEARING\":")
-		if in.Wearing == nil {
-			out.RawString("null")
+		const prefix string = ",\"WEARING\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.Wearing))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.Wearing))
 	}
 	if in.OwnerName != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"OWNER_NAME\":")
-		if in.OwnerName == nil {
-			out.RawString("null")
+		const prefix string = ",\"OWNER_NAME\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.OwnerName))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.OwnerName))
 	}
 	if in.DamYearBorn != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"DAM_YEAR_BORN\":")
-		if in.DamYearBorn == nil {
-			out.RawString("null")
+		const prefix string = ",\"DAM_YEAR_BORN\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.DamYearBorn))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.DamYearBorn))
 	}
 	if in.SireBred != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"SIRE_BRED\":")
-		if in.SireBred == nil {
-			out.RawString("null")
+		const prefix string = ",\"SIRE_BRED\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.SireBred))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.SireBred))
 	}
 	if in.JockeyName != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"JOCKEY_NAME\":")
-		if in.JockeyName == nil {
-			out.RawString("null")
+		const prefix string = ",\"JOCKEY_NAME\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.JockeyName))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.JockeyName))
 	}
 	if in.DamBred != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"DAM_BRED\":")
-		if in.DamBred == nil {
-			out.RawString("null")
+		const prefix string = ",\"DAM_BRED\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.DamBred))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.DamBred))
 	}
 	if in.AdjustedRating != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"ADJUSTED_RATING\":")
-		if in.AdjustedRating == nil {
-			out.RawString("null")
+		const prefix string = ",\"ADJUSTED_RATING\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.AdjustedRating))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.AdjustedRating))
 	}
 	if in.RunnerID != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"runnerId\":")
-		if in.RunnerID == nil {
-			out.RawString("null")
+		const prefix string = ",\"runnerId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.RunnerID))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.RunnerID))
 	}
 	if in.ClothNumber != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"CLOTH_NUMBER\":")
-		if in.ClothNumber == nil {
-			out.RawString("null")
+		const prefix string = ",\"CLOTH_NUMBER\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.ClothNumber))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.ClothNumber))
 	}
 	if in.SireYearBorn != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"SIRE_YEAR_BORN\":")
-		if in.SireYearBorn == nil {
-			out.RawString("null")
+		const prefix string = ",\"SIRE_YEAR_BORN\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.SireYearBorn))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.SireYearBorn))
 	}
 	if in.TrainerName != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"TRAINER_NAME\":")
-		if in.TrainerName == nil {
-			out.RawString("null")
+		const prefix string = ",\"TRAINER_NAME\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.TrainerName))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.TrainerName))
 	}
 	if in.ColourType != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"COLOUR_TYPE\":")
-		if in.ColourType == nil {
-			out.RawString("null")
+		const prefix string = ",\"COLOUR_TYPE\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.ColourType))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.ColourType))
 	}
 	if in.Age != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"AGE\":")
-		if in.Age == nil {
-			out.RawString("null")
+		const prefix string = ",\"AGE\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.Age))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.Age))
 	}
 	if in.DamsireBred != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"DAMSIRE_BRED\":")
-		if in.DamsireBred == nil {
-			out.RawString("null")
+		const prefix string = ",\"DAMSIRE_BRED\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.DamsireBred))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.DamsireBred))
 	}
 	if in.JockeyClaim != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"JOCKEY_CLAIM\":")
-		if in.JockeyClaim == nil {
-			out.RawString("null")
+		const prefix string = ",\"JOCKEY_CLAIM\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.JockeyClaim))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.JockeyClaim))
 	}
 	if in.Form != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"FORM\":")
-		if in.Form == nil {
-			out.RawString("null")
+		const prefix string = ",\"FORM\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.Form))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.Form))
 	}
 	if in.ForecastPriceNumerator != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"FORECASTPRICE_NUMERATOR\":")
-		if in.ForecastPriceNumerator == nil {
-			out.RawString("null")
+		const prefix string = ",\"FORECASTPRICE_NUMERATOR\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.ForecastPriceNumerator))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.ForecastPriceNumerator))
 	}
 	if in.Bred != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"BRED\":")
-		if in.Bred == nil {
-			out.RawString("null")
+		const prefix string = ",\"BRED\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.Bred))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.Bred))
 	}
 	if in.DamName != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"DAM_NAME\":")
-		if in.DamName == nil {
-			out.RawString("null")
+		const prefix string = ",\"DAM_NAME\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.DamName))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.DamName))
 	}
 	if in.DamSireYearBorn != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"DAMSIRE_YEAR_BORN\":")
-		if in.DamSireYearBorn == nil {
-			out.RawString("null")
+		const prefix string = ",\"DAMSIRE_YEAR_BORN\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.DamSireYearBorn))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.DamSireYearBorn))
 	}
 	if in.StallDraw != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"STALL_DRAW\":")
-		if in.StallDraw == nil {
-			out.RawString("null")
+		const prefix string = ",\"STALL_DRAW\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.StallDraw))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.StallDraw))
 	}
 	if in.WeightUnits != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"WEIGHT_UNITS\":")
-		if in.WeightUnits == nil {
-			out.RawString("null")
+		const prefix string = ",\"WEIGHT_UNITS\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			out.String(string(*in.WeightUnits))
+			out.RawString(prefix)
 		}
+		out.String(string(*in.WeightUnits))
 	}
 	out.RawByte('}')
 }
@@ -1667,48 +1641,54 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi8(out *jwriter.Writer, in RunnerCat
 	first := true
 	_ = first
 	if in.SelectionID != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"selectionId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"selectionId\":")
 		out.Int64(int64(in.SelectionID))
 	}
 	if in.RunnerName != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"runnerName\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"runnerName\":")
 		out.String(string(in.RunnerName))
 	}
 	if in.Handicap != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"handicap\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"handicap\":")
 		out.Float64(float64(in.Handicap))
 	}
 	if in.SortPriority != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"sortPriority\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"sortPriority\":")
 		out.Int(int(in.SortPriority))
 	}
 	if in.Metadata != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"metadata\":")
-		if in.Metadata == nil {
-			out.RawString("null")
+		const prefix string = ",\"metadata\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			(*in.Metadata).MarshalEasyJSON(out)
+			out.RawString(prefix)
 		}
+		(*in.Metadata).MarshalEasyJSON(out)
 	}
 	out.RawByte('}')
 }
@@ -1790,75 +1770,93 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi9(out *jwriter.Writer, in Runner) {
 	first := true
 	_ = first
 	if in.SelectionID != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"selectionId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"selectionId\":")
 		out.Int64(int64(in.SelectionID))
 	}
 	if in.Handicap != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"handicap\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"handicap\":")
 		out.Float64(float64(in.Handicap))
 	}
 	if in.Status != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"status\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"status\":")
 		out.String(string(in.Status))
 	}
 	if in.AdjustmentFactor != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"adjustmentFactor\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"adjustmentFactor\":")
 		out.Float64(float64(in.AdjustmentFactor))
 	}
 	if in.LastPriceTraded != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"lastPriceTraded\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"lastPriceTraded\":")
 		out.Float64(float64(in.LastPriceTraded))
 	}
 	if in.TotalMatched != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"totalMatched\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"totalMatched\":")
 		out.Float64(float64(in.TotalMatched))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"removalDate\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"removalDate\":")
 		out.Raw((in.RemovalDate).MarshalJSON())
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"sp\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"sp\":")
 		(in.Sp).MarshalEasyJSON(out)
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"ex\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"ex\":")
 		(in.Ex).MarshalEasyJSON(out)
 	}
 	out.RawByte('}')
@@ -1952,22 +1950,24 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi10(out *jwriter.Writer, in ReplaceO
 	first := true
 	_ = first
 	if in.MarketID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketId\":")
 		out.String(string(in.MarketID))
 	}
 	if len(in.Instructions) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"instructions\":")
-		if in.Instructions == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"instructions\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v20, v21 := range in.Instructions {
 				if v20 > 0 {
@@ -1979,27 +1979,33 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi10(out *jwriter.Writer, in ReplaceO
 		}
 	}
 	if in.CustomerRef != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"customerRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"customerRef\":")
 		out.String(string(in.CustomerRef))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketVersion\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketVersion\":")
 		(in.MarketVersion).MarshalEasyJSON(out)
 	}
 	if in.Async {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"async\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"async\":")
 		out.Bool(bool(in.Async))
 	}
 	out.RawByte('}')
@@ -2070,35 +2076,43 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi11(out *jwriter.Writer, in ReplaceI
 	first := true
 	_ = first
 	if in.Status != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"status\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"status\":")
 		out.String(string(in.Status))
 	}
 	if in.ErrorCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"errorCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"errorCode\":")
 		out.String(string(in.ErrorCode))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"cancelInstructionReport\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"cancelInstructionReport\":")
 		(in.CancelInstructionReport).MarshalEasyJSON(out)
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"placeInstructionReport\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"placeInstructionReport\":")
 		(in.PlaceInstructionReport).MarshalEasyJSON(out)
 	}
 	out.RawByte('}')
@@ -2165,19 +2179,23 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi12(out *jwriter.Writer, in ReplaceI
 	first := true
 	_ = first
 	if in.BetID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"betId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"betId\":")
 		out.String(string(in.BetID))
 	}
 	if in.NewPrice != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"newPrice\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"newPrice\":")
 		out.Float64(float64(in.NewPrice))
 	}
 	out.RawByte('}')
@@ -2271,46 +2289,54 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi13(out *jwriter.Writer, in ReplaceE
 	first := true
 	_ = first
 	if in.CustomerRef != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"customerRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"customerRef\":")
 		out.String(string(in.CustomerRef))
 	}
 	if in.Status != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"status\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"status\":")
 		out.String(string(in.Status))
 	}
 	if in.ErrorCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"errorCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"errorCode\":")
 		out.String(string(in.ErrorCode))
 	}
 	if in.MarketID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketId\":")
 		out.String(string(in.MarketID))
 	}
 	if len(in.InstructionReports) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"instructionReports\":")
-		if in.InstructionReports == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"instructionReports\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v23, v24 := range in.InstructionReports {
 				if v23 > 0 {
@@ -2385,19 +2411,23 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi14(out *jwriter.Writer, in PriceSiz
 	first := true
 	_ = first
 	if in.Price != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"price\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"price\":")
 		out.Float64(float64(in.Price))
 	}
 	if in.Size != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"size\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"size\":")
 		out.Float64(float64(in.Size))
 	}
 	out.RawByte('}')
@@ -2489,14 +2519,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi15(out *jwriter.Writer, in PricePro
 	first := true
 	_ = first
 	if len(in.PriceData) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"priceData\":")
-		if in.PriceData == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"priceData\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v26, v27 := range in.PriceData {
 				if v26 > 0 {
@@ -2508,27 +2538,33 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi15(out *jwriter.Writer, in PricePro
 		}
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"exBestOffersOverrides\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"exBestOffersOverrides\":")
 		(in.ExBestOffersOverrides).MarshalEasyJSON(out)
 	}
 	if in.Virtualise {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"virtualise\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"virtualise\":")
 		out.Bool(bool(in.Virtualise))
 	}
 	if in.RolloverStakes {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"rolloverStakes\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"rolloverStakes\":")
 		out.Bool(bool(in.RolloverStakes))
 	}
 	out.RawByte('}')
@@ -2593,11 +2629,13 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi16(out *jwriter.Writer, in PriceLad
 	first := true
 	_ = first
 	if in.Type != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"type\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"type\":")
 		out.String(string(in.Type))
 	}
 	out.RawByte('}')
@@ -2693,22 +2731,24 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi17(out *jwriter.Writer, in PlaceOrd
 	first := true
 	_ = first
 	if in.MarketID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketId\":")
 		out.String(string(in.MarketID))
 	}
 	if len(in.Instructions) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"instructions\":")
-		if in.Instructions == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"instructions\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v29, v30 := range in.Instructions {
 				if v29 > 0 {
@@ -2720,35 +2760,43 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi17(out *jwriter.Writer, in PlaceOrd
 		}
 	}
 	if in.CustomerRef != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"customerRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"customerRef\":")
 		out.String(string(in.CustomerRef))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketVersion\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketVersion\":")
 		(in.MarketVersion).MarshalEasyJSON(out)
 	}
 	if in.CustomerStrategyRef != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"customerStrategyRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"customerStrategyRef\":")
 		out.String(string(in.CustomerStrategyRef))
 	}
 	if in.Async {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"async\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"async\":")
 		out.Bool(bool(in.Async))
 	}
 	out.RawByte('}')
@@ -2844,22 +2892,24 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi18(out *jwriter.Writer, in PlaceOrd
 	first := true
 	_ = first
 	if in.MarketID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketId\":")
 		out.String(string(in.MarketID))
 	}
 	if len(in.Instructions) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"instructions\":")
-		if in.Instructions == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"instructions\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v32, v33 := range in.Instructions {
 				if v32 > 0 {
@@ -2871,35 +2921,43 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi18(out *jwriter.Writer, in PlaceOrd
 		}
 	}
 	if in.CustomerRef != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"customerRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"customerRef\":")
 		out.String(string(in.CustomerRef))
 	}
 	if in.MarketVersion != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketVersion\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketVersion\":")
 		out.Int(int(in.MarketVersion))
 	}
 	if in.CustomerStrategyRef != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"customerStrategyRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"customerStrategyRef\":")
 		out.String(string(in.CustomerStrategyRef))
 	}
 	if in.Async {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"async\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"async\":")
 		out.Bool(bool(in.Async))
 	}
 	out.RawByte('}')
@@ -2978,67 +3036,83 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi19(out *jwriter.Writer, in PlaceIns
 	first := true
 	_ = first
 	if in.Status != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"status\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"status\":")
 		out.String(string(in.Status))
 	}
 	if in.ErrorCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"errorCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"errorCode\":")
 		out.String(string(in.ErrorCode))
 	}
 	if in.OrderStatus != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"orderStatus\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"orderStatus\":")
 		out.String(string(in.OrderStatus))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"instruction\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"instruction\":")
 		(in.Instruction).MarshalEasyJSON(out)
 	}
 	if in.BetID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"betId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"betId\":")
 		out.String(string(in.BetID))
 	}
 	if in.PlacedDate != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"placedDate\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"placedDate\":")
 		out.String(string(in.PlacedDate))
 	}
 	if in.AveragePriceMatched != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"averagePriceMatched\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"averagePriceMatched\":")
 		out.Int(int(in.AveragePriceMatched))
 	}
 	if in.SizeMatched != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"sizeMatched\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"sizeMatched\":")
 		out.Int(int(in.SizeMatched))
 	}
 	out.RawByte('}')
@@ -3141,79 +3215,83 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi20(out *jwriter.Writer, in PlaceIns
 	first := true
 	_ = first
 	if in.OrderType != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"orderType\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"orderType\":")
 		out.String(string(in.OrderType))
 	}
 	if in.SelectionID != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"selectionId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"selectionId\":")
 		out.Int64(int64(in.SelectionID))
 	}
 	if in.Handicap != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"handicap\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"handicap\":")
 		out.String(string(in.Handicap))
 	}
 	if in.Side != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"side\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"side\":")
 		out.String(string(in.Side))
 	}
 	if in.LimitOrder != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"limitOrder\":")
-		if in.LimitOrder == nil {
-			out.RawString("null")
+		const prefix string = ",\"limitOrder\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			(*in.LimitOrder).MarshalEasyJSON(out)
+			out.RawString(prefix)
 		}
+		(*in.LimitOrder).MarshalEasyJSON(out)
 	}
 	if in.LimitOnCloseOrder != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"limitOnCloseOrder\":")
-		if in.LimitOnCloseOrder == nil {
-			out.RawString("null")
+		const prefix string = ",\"limitOnCloseOrder\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			(*in.LimitOnCloseOrder).MarshalEasyJSON(out)
+			out.RawString(prefix)
 		}
+		(*in.LimitOnCloseOrder).MarshalEasyJSON(out)
 	}
 	if in.MarketOnCloseOrder != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"marketOnCloseOrder\":")
-		if in.MarketOnCloseOrder == nil {
-			out.RawString("null")
+		const prefix string = ",\"marketOnCloseOrder\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			(*in.MarketOnCloseOrder).MarshalEasyJSON(out)
+			out.RawString(prefix)
 		}
+		(*in.MarketOnCloseOrder).MarshalEasyJSON(out)
 	}
 	if in.CustomerOrderRef != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"customerOrderRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"customerOrderRef\":")
 		out.String(string(in.CustomerOrderRef))
 	}
 	out.RawByte('}')
@@ -3307,46 +3385,54 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi21(out *jwriter.Writer, in PlaceExe
 	first := true
 	_ = first
 	if in.CustomerRef != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"customerRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"customerRef\":")
 		out.String(string(in.CustomerRef))
 	}
 	if in.MarketID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketId\":")
 		out.String(string(in.MarketID))
 	}
 	if in.Status != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"status\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"status\":")
 		out.String(string(in.Status))
 	}
 	if in.ErrorCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"errorCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"errorCode\":")
 		out.String(string(in.ErrorCode))
 	}
 	if len(in.InstructionReports) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"instructionReports\":")
-		if in.InstructionReports == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"instructionReports\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v35, v36 := range in.InstructionReports {
 				if v35 > 0 {
@@ -3419,11 +3505,13 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi22(out *jwriter.Writer, in MarketVe
 	first := true
 	_ = first
 	if in.Version != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"version\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"version\":")
 		out.Float64(float64(in.Version))
 	}
 	out.RawByte('}')
@@ -3488,11 +3576,13 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi23(out *jwriter.Writer, in MarketOn
 	first := true
 	_ = first
 	if in.Liability != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"liability\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"liability\":")
 		out.Float64(float64(in.Liability))
 	}
 	out.RawByte('}')
@@ -3647,14 +3737,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi24(out *jwriter.Writer, in MarketLi
 	first := true
 	_ = first
 	if len(in.MarketIds) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"marketIds\":")
-		if in.MarketIds == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"marketIds\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v41, v42 := range in.MarketIds {
 				if v41 > 0 {
@@ -3666,14 +3756,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi24(out *jwriter.Writer, in MarketLi
 		}
 	}
 	if len(in.EventTypes) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"eventTypeIds\":")
-		if in.EventTypes == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"eventTypeIds\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v43, v44 := range in.EventTypes {
 				if v43 > 0 {
@@ -3685,14 +3775,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi24(out *jwriter.Writer, in MarketLi
 		}
 	}
 	if len(in.Countries) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"marketCountries\":")
-		if in.Countries == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"marketCountries\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v45, v46 := range in.Countries {
 				if v45 > 0 {
@@ -3704,14 +3794,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi24(out *jwriter.Writer, in MarketLi
 		}
 	}
 	if len(in.TypeCodes) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"marketTypeCodes\":")
-		if in.TypeCodes == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"marketTypeCodes\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v47, v48 := range in.TypeCodes {
 				if v47 > 0 {
@@ -3790,35 +3880,43 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi25(out *jwriter.Writer, in MarketLi
 	first := true
 	_ = first
 	if in.MaxUnitValue != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"maxUnitValue\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"maxUnitValue\":")
 		out.Float64(float64(in.MaxUnitValue))
 	}
 	if in.MinUnitValue != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"minUnitValue\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"minUnitValue\":")
 		out.Float64(float64(in.MinUnitValue))
 	}
 	if in.Interval != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"interval\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"interval\":")
 		out.Float64(float64(in.Interval))
 	}
 	if in.MarketUnit != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketUnit\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketUnit\":")
 		out.String(string(in.MarketUnit))
 	}
 	out.RawByte('}')
@@ -3923,147 +4021,183 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi26(out *jwriter.Writer, in MarketDe
 	first := true
 	_ = first
 	if in.PersistenceEnabled {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"persistenceEnabled\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"persistenceEnabled\":")
 		out.Bool(bool(in.PersistenceEnabled))
 	}
 	if in.BspMarket {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"bspMarket\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"bspMarket\":")
 		out.Bool(bool(in.BspMarket))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketTime\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketTime\":")
 		out.Raw((in.MarketTime).MarshalJSON())
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"suspendTime\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"suspendTime\":")
 		out.Raw((in.SuspendTime).MarshalJSON())
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"settleTime\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"settleTime\":")
 		out.Raw((in.SettleTime).MarshalJSON())
 	}
 	if in.BettingType != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"bettingType\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"bettingType\":")
 		out.String(string(in.BettingType))
 	}
 	if in.TurnInPlayEnabled {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"turnInPlayEnabled\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"turnInPlayEnabled\":")
 		out.Bool(bool(in.TurnInPlayEnabled))
 	}
 	if in.MarketType != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketType\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketType\":")
 		out.String(string(in.MarketType))
 	}
 	if in.Regulator != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"regulator\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"regulator\":")
 		out.String(string(in.Regulator))
 	}
 	if in.MarketBaseRate != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketBaseRate\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketBaseRate\":")
 		out.Float64(float64(in.MarketBaseRate))
 	}
 	if in.DiscountAllowed {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"discountAllowed\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"discountAllowed\":")
 		out.Bool(bool(in.DiscountAllowed))
 	}
 	if in.Wallet != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"wallet\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"wallet\":")
 		out.String(string(in.Wallet))
 	}
 	if in.Rules != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"rules\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"rules\":")
 		out.String(string(in.Rules))
 	}
 	if in.RulesHasDate {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"rulesHasDate\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"rulesHasDate\":")
 		out.Bool(bool(in.RulesHasDate))
 	}
 	if in.EachWayDivisor != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"eachWayDivisor\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"eachWayDivisor\":")
 		out.Float64(float64(in.EachWayDivisor))
 	}
 	if in.Clarifications != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"clarifications\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"clarifications\":")
 		out.String(string(in.Clarifications))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"lineRangeInfo\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"lineRangeInfo\":")
 		(in.LineRangeInfo).MarshalEasyJSON(out)
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"priceLadderDescription\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"priceLadderDescription\":")
 		(in.PriceLadderDescription).MarshalEasyJSON(out)
 	}
 	out.RawByte('}')
@@ -4199,58 +4333,64 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi27(out *jwriter.Writer, in MarketCa
 	first := true
 	_ = first
 	if in.MarketID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketId\":")
 		out.String(string(in.MarketID))
 	}
 	if in.MarketName != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketName\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketName\":")
 		out.String(string(in.MarketName))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketStartTime\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketStartTime\":")
 		out.Raw((in.MarketStartTime).MarshalJSON())
 	}
 	if in.Description != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"marketDescription\":")
-		if in.Description == nil {
-			out.RawString("null")
+		const prefix string = ",\"marketDescription\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			(*in.Description).MarshalEasyJSON(out)
+			out.RawString(prefix)
 		}
+		(*in.Description).MarshalEasyJSON(out)
 	}
 	if in.TotalMatched != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"totalMatched\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"totalMatched\":")
 		out.Float64(float64(in.TotalMatched))
 	}
 	if len(in.Runners) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"runners\":")
-		if in.Runners == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"runners\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v50, v51 := range in.Runners {
 				if v50 > 0 {
@@ -4262,40 +4402,34 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi27(out *jwriter.Writer, in MarketCa
 		}
 	}
 	if in.EventType != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"eventType\":")
-		if in.EventType == nil {
-			out.RawString("null")
+		const prefix string = ",\"eventType\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			(*in.EventType).MarshalEasyJSON(out)
+			out.RawString(prefix)
 		}
+		(*in.EventType).MarshalEasyJSON(out)
 	}
 	if in.Competition != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"competition\":")
-		if in.Competition == nil {
-			out.RawString("null")
+		const prefix string = ",\"competition\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			(*in.Competition).MarshalEasyJSON(out)
+			out.RawString(prefix)
 		}
+		(*in.Competition).MarshalEasyJSON(out)
 	}
 	if in.Event != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"event\":")
-		if in.Event == nil {
-			out.RawString("null")
+		const prefix string = ",\"event\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			(*in.Event).MarshalEasyJSON(out)
+			out.RawString(prefix)
 		}
+		(*in.Event).MarshalEasyJSON(out)
 	}
 	out.RawByte('}')
 }
@@ -4416,142 +4550,174 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi28(out *jwriter.Writer, in MarketBo
 	first := true
 	_ = first
 	if in.MarketID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketId\":")
 		out.String(string(in.MarketID))
 	}
 	if in.IsMarketDataDelayed {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"isMarketDataDelayed\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"isMarketDataDelayed\":")
 		out.Bool(bool(in.IsMarketDataDelayed))
 	}
 	if in.Status != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"status\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"status\":")
 		out.String(string(in.Status))
 	}
 	if in.BetDelay != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"betDelay\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"betDelay\":")
 		out.Int(int(in.BetDelay))
 	}
 	if in.BspReconciled {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"bspReconciled\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"bspReconciled\":")
 		out.Bool(bool(in.BspReconciled))
 	}
 	if in.Complete {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"complete\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"complete\":")
 		out.Bool(bool(in.Complete))
 	}
 	if in.Inplay {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"inplay\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"inplay\":")
 		out.Bool(bool(in.Inplay))
 	}
 	if in.NumberOfWinners != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"numberOfWinners\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"numberOfWinners\":")
 		out.Int(int(in.NumberOfWinners))
 	}
 	if in.NumberOfRunners != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"numberOfRunners\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"numberOfRunners\":")
 		out.Int(int(in.NumberOfRunners))
 	}
 	if in.NumberOfActiveRunners != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"numberOfActiveRunners\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"numberOfActiveRunners\":")
 		out.Int(int(in.NumberOfActiveRunners))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"lastMatchTime\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"lastMatchTime\":")
 		out.Raw((in.LastMatchTime).MarshalJSON())
 	}
 	if in.TotalMatched != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"totalMatched\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"totalMatched\":")
 		out.Float64(float64(in.TotalMatched))
 	}
 	if in.TotalAvailable != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"totalAvailable\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"totalAvailable\":")
 		out.Float64(float64(in.TotalAvailable))
 	}
 	if in.CrossMatching {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"crossMatching\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"crossMatching\":")
 		out.Bool(bool(in.CrossMatching))
 	}
 	if in.RunnersVoidable {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"runnersVoidable\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"runnersVoidable\":")
 		out.Bool(bool(in.RunnersVoidable))
 	}
 	if in.Version != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"version\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"version\":")
 		out.Int64(int64(in.Version))
 	}
 	if len(in.Runners) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"runners\":")
-		if in.Runners == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"runners\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v53, v54 := range in.Runners {
 				if v53 > 0 {
@@ -4563,11 +4729,13 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi28(out *jwriter.Writer, in MarketBo
 		}
 	}
 	if in.KeyLineDescription != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"keyLineDescription\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"keyLineDescription\":")
 		out.String(string(in.KeyLineDescription))
 	}
 	out.RawByte('}')
@@ -4659,22 +4827,24 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi29(out *jwriter.Writer, in ListMark
 	first := true
 	_ = first
 	if in.Sort != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"sort\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"sort\":")
 		out.String(string(in.Sort))
 	}
 	if len(in.MarketProjection) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"marketProjection\":")
-		if in.MarketProjection == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"marketProjection\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v56, v57 := range in.MarketProjection {
 				if v56 > 0 {
@@ -4686,19 +4856,23 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi29(out *jwriter.Writer, in ListMark
 		}
 	}
 	if in.MaxResults != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"maxResults\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"maxResults\":")
 		out.Int(int(in.MaxResults))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"filter\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"filter\":")
 		(in.Filter).MarshalEasyJSON(out)
 	}
 	out.RawByte('}')
@@ -4848,14 +5022,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi30(out *jwriter.Writer, in ListMark
 	first := true
 	_ = first
 	if len(in.MarketIds) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"marketIds\":")
-		if in.MarketIds == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"marketIds\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v61, v62 := range in.MarketIds {
 				if v61 > 0 {
@@ -4867,54 +5041,64 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi30(out *jwriter.Writer, in ListMark
 		}
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"priceProjection\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"priceProjection\":")
 		(in.PriceProjection).MarshalEasyJSON(out)
 	}
 	if in.OrderProjection != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"orderProjection\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"orderProjection\":")
 		out.String(string(in.OrderProjection))
 	}
 	if in.MatchProjection != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"matchProjection\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"matchProjection\":")
 		out.String(string(in.MatchProjection))
 	}
 	if in.IncludeOverallPosition {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"includeOverallPosition\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"includeOverallPosition\":")
 		out.Bool(bool(in.IncludeOverallPosition))
 	}
 	if in.PartitionMatchedByStrategyRef {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"partitionMatchedByStrategyRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"partitionMatchedByStrategyRef\":")
 		out.Bool(bool(in.PartitionMatchedByStrategyRef))
 	}
 	if len(in.CustomerStrategyRefs) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"customerStrategyRefs\":")
-		if in.CustomerStrategyRefs == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"customerStrategyRefs\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v63, v64 := range in.CustomerStrategyRefs {
 				if v63 > 0 {
@@ -4926,38 +5110,44 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi30(out *jwriter.Writer, in ListMark
 		}
 	}
 	if in.CurrencyCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"currencyCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"currencyCode\":")
 		out.String(string(in.CurrencyCode))
 	}
 	if in.Locale != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"locale\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"locale\":")
 		out.String(string(in.Locale))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"matchedSince\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"matchedSince\":")
 		out.Raw((in.MatchedSince).MarshalJSON())
 	}
 	if len(in.BetIds) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"betIds\":")
-		if in.BetIds == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"betIds\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v65, v66 := range in.BetIds {
 				if v65 > 0 {
@@ -5213,22 +5403,24 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi31(out *jwriter.Writer, in ListClea
 	first := true
 	_ = first
 	if in.BetStatus != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"betStatus\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"betStatus\":")
 		out.String(string(in.BetStatus))
 	}
 	if len(in.EventTypeIDs) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"eventTypeIds\":")
-		if in.EventTypeIDs == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"eventTypeIds\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v74, v75 := range in.EventTypeIDs {
 				if v74 > 0 {
@@ -5240,14 +5432,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi31(out *jwriter.Writer, in ListClea
 		}
 	}
 	if len(in.EventIDs) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"eventIds\":")
-		if in.EventIDs == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"eventIds\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v76, v77 := range in.EventIDs {
 				if v76 > 0 {
@@ -5259,14 +5451,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi31(out *jwriter.Writer, in ListClea
 		}
 	}
 	if len(in.MarketIDs) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"marketIds\":")
-		if in.MarketIDs == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"marketIds\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v78, v79 := range in.MarketIDs {
 				if v78 > 0 {
@@ -5278,14 +5470,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi31(out *jwriter.Writer, in ListClea
 		}
 	}
 	if len(in.RunnerIDs) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"runnerIds\":")
-		if in.RunnerIDs == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"runnerIds\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v80, v81 := range in.RunnerIDs {
 				if v80 > 0 {
@@ -5297,14 +5489,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi31(out *jwriter.Writer, in ListClea
 		}
 	}
 	if len(in.BetIDs) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"betIds\":")
-		if in.BetIDs == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"betIds\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v82, v83 := range in.BetIDs {
 				if v82 > 0 {
@@ -5316,14 +5508,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi31(out *jwriter.Writer, in ListClea
 		}
 	}
 	if len(in.CustomerOrderRefs) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"customerOrderRefs\":")
-		if in.CustomerOrderRefs == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"customerOrderRefs\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v84, v85 := range in.CustomerOrderRefs {
 				if v84 > 0 {
@@ -5335,14 +5527,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi31(out *jwriter.Writer, in ListClea
 		}
 	}
 	if len(in.CustomerStrategyRefs) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"customerStrategyRefs\":")
-		if in.CustomerStrategyRefs == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"customerStrategyRefs\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v86, v87 := range in.CustomerStrategyRefs {
 				if v86 > 0 {
@@ -5354,63 +5546,73 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi31(out *jwriter.Writer, in ListClea
 		}
 	}
 	if in.Side != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"side\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"side\":")
 		out.String(string(in.Side))
 	}
 	if in.SettledDateRange != nil {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"settledDateRange\":")
-		if in.SettledDateRange == nil {
-			out.RawString("null")
+		const prefix string = ",\"settledDateRange\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
-			(*in.SettledDateRange).MarshalEasyJSON(out)
+			out.RawString(prefix)
 		}
+		(*in.SettledDateRange).MarshalEasyJSON(out)
 	}
 	if in.GroupBy != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"groupBy\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"groupBy\":")
 		out.String(string(in.GroupBy))
 	}
 	if in.IncludeItemDescription {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"includeItemDescription\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"includeItemDescription\":")
 		out.Bool(bool(in.IncludeItemDescription))
 	}
 	if in.Locale != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"locale\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"locale\":")
 		out.String(string(in.Locale))
 	}
 	if in.FromRecord != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"fromRecord\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"fromRecord\":")
 		out.Int(int(in.FromRecord))
 	}
 	if in.RecordCount != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"recordCount\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"recordCount\":")
 		out.Int(int(in.RecordCount))
 	}
 	out.RawByte('}')
@@ -5479,27 +5681,33 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi32(out *jwriter.Writer, in LimitOrd
 	first := true
 	_ = first
 	if in.Size != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"size\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"size\":")
 		out.Float64(float64(in.Size))
 	}
 	if in.Price != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"price\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"price\":")
 		out.Float64(float64(in.Price))
 	}
 	if in.PersistenceType != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"persistenceType\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"persistenceType\":")
 		out.String(string(in.PersistenceType))
 	}
 	out.RawByte('}')
@@ -5566,19 +5774,23 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi33(out *jwriter.Writer, in LimitOnC
 	first := true
 	_ = first
 	if in.Liability != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"liability\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"liability\":")
 		out.Float64(float64(in.Liability))
 	}
 	if in.Price != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"price\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"price\":")
 		out.Float64(float64(in.Price))
 	}
 	out.RawByte('}')
@@ -5658,54 +5870,86 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi34(out *jwriter.Writer, in ItemDesc
 	out.RawByte('{')
 	first := true
 	_ = first
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"eventTypeDesc\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.EventTypeDesc))
 	}
-	first = false
-	out.RawString("\"eventTypeDesc\":")
-	out.String(string(in.EventTypeDesc))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"eventDesc\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.EventDesc))
 	}
-	first = false
-	out.RawString("\"eventDesc\":")
-	out.String(string(in.EventDesc))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"marketDesc\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.MarketDesc))
 	}
-	first = false
-	out.RawString("\"marketDesc\":")
-	out.String(string(in.MarketDesc))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"marketType\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.MarketType))
 	}
-	first = false
-	out.RawString("\"marketType\":")
-	out.String(string(in.MarketType))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"marketStartTime\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.MarketStartTime).MarshalJSON())
 	}
-	first = false
-	out.RawString("\"marketStartTime\":")
-	out.Raw((in.MarketStartTime).MarshalJSON())
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"runnerDesc\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.RunnerDesc))
 	}
-	first = false
-	out.RawString("\"runnerDesc\":")
-	out.String(string(in.RunnerDesc))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"numberOfWinners\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Int(int(in.NumberOfWinners))
 	}
-	first = false
-	out.RawString("\"numberOfWinners\":")
-	out.Int(int(in.NumberOfWinners))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"eachWayDivisor\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Float64(float64(in.EachWayDivisor))
 	}
-	first = false
-	out.RawString("\"eachWayDivisor\":")
-	out.Float64(float64(in.EachWayDivisor))
 	out.RawByte('}')
 }
 
@@ -5835,14 +6079,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi35(out *jwriter.Writer, in Exchange
 	first := true
 	_ = first
 	if len(in.AvailableToBack) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"availableToBack\":")
-		if in.AvailableToBack == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"availableToBack\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v91, v92 := range in.AvailableToBack {
 				if v91 > 0 {
@@ -5854,14 +6098,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi35(out *jwriter.Writer, in Exchange
 		}
 	}
 	if len(in.AvailableToLay) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"availableToLay\":")
-		if in.AvailableToLay == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"availableToLay\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v93, v94 := range in.AvailableToLay {
 				if v93 > 0 {
@@ -5873,14 +6117,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi35(out *jwriter.Writer, in Exchange
 		}
 	}
 	if len(in.TradedVolume) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"tradedVolume\":")
-		if in.TradedVolume == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"tradedVolume\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v95, v96 := range in.TradedVolume {
 				if v95 > 0 {
@@ -6020,14 +6264,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi36(out *jwriter.Writer, in Exchange
 	first := true
 	_ = first
 	if len(in.AvailableToBack) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"availableToBack\":")
-		if in.AvailableToBack == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"availableToBack\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v100, v101 := range in.AvailableToBack {
 				if v100 > 0 {
@@ -6039,14 +6283,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi36(out *jwriter.Writer, in Exchange
 		}
 	}
 	if len(in.AvailableToLay) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"availableToLay\":")
-		if in.AvailableToLay == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"availableToLay\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v102, v103 := range in.AvailableToLay {
 				if v102 > 0 {
@@ -6058,14 +6302,14 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi36(out *jwriter.Writer, in Exchange
 		}
 	}
 	if len(in.TradedVolume) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"tradedVolume\":")
-		if in.TradedVolume == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"tradedVolume\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v104, v105 := range in.TradedVolume {
 				if v104 > 0 {
@@ -6146,43 +6390,53 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi37(out *jwriter.Writer, in ExBestOf
 	first := true
 	_ = first
 	if in.BestPricesDepth != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"bestPricesDepth\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"bestPricesDepth\":")
 		out.Int(int(in.BestPricesDepth))
 	}
 	if in.RollupModel != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"rollupModel\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"rollupModel\":")
 		out.String(string(in.RollupModel))
 	}
 	if in.RollupLimit != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"rollupLimit\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"rollupLimit\":")
 		out.Int(int(in.RollupLimit))
 	}
 	if in.RollupLiabilityThreshold != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"rollupLiabilityThreshold\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"rollupLiabilityThreshold\":")
 		out.Float64(float64(in.RollupLiabilityThreshold))
 	}
 	if in.RollupLiabilityFactor != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"rollupLiabilityFactor\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"rollupLiabilityFactor\":")
 		out.Int(int(in.RollupLiabilityFactor))
 	}
 	out.RawByte('}')
@@ -6249,19 +6503,23 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi38(out *jwriter.Writer, in EventTyp
 	first := true
 	_ = first
 	if in.ID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"id\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"id\":")
 		out.String(string(in.ID))
 	}
 	if in.Name != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"name\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"name\":")
 		out.String(string(in.Name))
 	}
 	out.RawByte('}')
@@ -6338,51 +6596,63 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi39(out *jwriter.Writer, in Event) {
 	first := true
 	_ = first
 	if in.ID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"id\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"id\":")
 		out.String(string(in.ID))
 	}
 	if in.Name != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"name\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"name\":")
 		out.String(string(in.Name))
 	}
 	if in.CountryCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"countryCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"countryCode\":")
 		out.String(string(in.CountryCode))
 	}
 	if in.Timezone != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"timezone\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"timezone\":")
 		out.String(string(in.Timezone))
 	}
 	if in.Venue != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"venue\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"venue\":")
 		out.String(string(in.Venue))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"openDate\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"openDate\":")
 		out.Raw((in.OpenDate).MarshalJSON())
 	}
 	out.RawByte('}')
@@ -6449,19 +6719,23 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi40(out *jwriter.Writer, in Competit
 	first := true
 	_ = first
 	if in.ID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"id\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"id\":")
 		out.String(string(in.ID))
 	}
 	if in.Name != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"name\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"name\":")
 		out.String(string(in.Name))
 	}
 	out.RawByte('}')
@@ -6548,29 +6822,37 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi41(out *jwriter.Writer, in ClearedO
 	out.RawByte('{')
 	first := true
 	_ = first
-	if !first {
-		out.RawByte(',')
-	}
-	first = false
-	out.RawString("\"clearedOrders\":")
-	if in.ClearedOrders == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-		out.RawString("null")
-	} else {
-		out.RawByte('[')
-		for v107, v108 := range in.ClearedOrders {
-			if v107 > 0 {
-				out.RawByte(',')
-			}
-			(v108).MarshalEasyJSON(out)
+	{
+		const prefix string = ",\"clearedOrders\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		out.RawByte(']')
+		if in.ClearedOrders == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
+		} else {
+			out.RawByte('[')
+			for v107, v108 := range in.ClearedOrders {
+				if v107 > 0 {
+					out.RawByte(',')
+				}
+				(v108).MarshalEasyJSON(out)
+			}
+			out.RawByte(']')
+		}
 	}
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"moreAvailable\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Bool(bool(in.MoreAvailable))
 	}
-	first = false
-	out.RawString("\"moreAvailable\":")
-	out.Bool(bool(in.MoreAvailable))
 	out.RawByte('}')
 }
 
@@ -6692,154 +6974,250 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi42(out *jwriter.Writer, in ClearedO
 	out.RawByte('{')
 	first := true
 	_ = first
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"eventTypeId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.EventTypeID))
 	}
-	first = false
-	out.RawString("\"eventTypeId\":")
-	out.String(string(in.EventTypeID))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"eventId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.EventID))
 	}
-	first = false
-	out.RawString("\"eventId\":")
-	out.String(string(in.EventID))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"marketId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.MarketID))
 	}
-	first = false
-	out.RawString("\"marketId\":")
-	out.String(string(in.MarketID))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"selectionId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Int64(int64(in.SelectionID))
 	}
-	first = false
-	out.RawString("\"selectionId\":")
-	out.Int64(int64(in.SelectionID))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"handicap\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Float64(float64(in.Handicap))
 	}
-	first = false
-	out.RawString("\"handicap\":")
-	out.Float64(float64(in.Handicap))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"betId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.BetID))
 	}
-	first = false
-	out.RawString("\"betId\":")
-	out.String(string(in.BetID))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"placedDate\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.PlacedDate).MarshalJSON())
 	}
-	first = false
-	out.RawString("\"placedDate\":")
-	out.Raw((in.PlacedDate).MarshalJSON())
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"persistenceType\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.PersistenceType))
 	}
-	first = false
-	out.RawString("\"persistenceType\":")
-	out.String(string(in.PersistenceType))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"orderType\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.OrderType))
 	}
-	first = false
-	out.RawString("\"orderType\":")
-	out.String(string(in.OrderType))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"side\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.Side))
 	}
-	first = false
-	out.RawString("\"side\":")
-	out.String(string(in.Side))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"itemDescription\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		if in.ItemDescription == nil {
+			out.RawString("null")
+		} else {
+			(*in.ItemDescription).MarshalEasyJSON(out)
+		}
 	}
-	first = false
-	out.RawString("\"itemDescription\":")
-	if in.ItemDescription == nil {
-		out.RawString("null")
-	} else {
-		(*in.ItemDescription).MarshalEasyJSON(out)
+	{
+		const prefix string = ",\"betOutcome\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.BetOutcome))
 	}
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"priceRequested\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Float64(float64(in.PriceRequested))
 	}
-	first = false
-	out.RawString("\"betOutcome\":")
-	out.String(string(in.BetOutcome))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"settledDate\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.SettledDate).MarshalJSON())
 	}
-	first = false
-	out.RawString("\"priceRequested\":")
-	out.Float64(float64(in.PriceRequested))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"lastMatchedDate\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Raw((in.LastMatchedDate).MarshalJSON())
 	}
-	first = false
-	out.RawString("\"settledDate\":")
-	out.Raw((in.SettledDate).MarshalJSON())
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"betCount\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Int(int(in.BetCount))
 	}
-	first = false
-	out.RawString("\"lastMatchedDate\":")
-	out.Raw((in.LastMatchedDate).MarshalJSON())
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"commission\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Float64(float64(in.Commission))
 	}
-	first = false
-	out.RawString("\"betCount\":")
-	out.Int(int(in.BetCount))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"priceMatched\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Float64(float64(in.PriceMatched))
 	}
-	first = false
-	out.RawString("\"commission\":")
-	out.Float64(float64(in.Commission))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"priceReduced\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Bool(bool(in.PriceReduced))
 	}
-	first = false
-	out.RawString("\"priceMatched\":")
-	out.Float64(float64(in.PriceMatched))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"sizeSettled\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Float64(float64(in.SizeSettled))
 	}
-	first = false
-	out.RawString("\"priceReduced\":")
-	out.Bool(bool(in.PriceReduced))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"profit\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Float64(float64(in.Profit))
 	}
-	first = false
-	out.RawString("\"sizeSettled\":")
-	out.Float64(float64(in.SizeSettled))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"sizeCancelled\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Float64(float64(in.SizeCancelled))
 	}
-	first = false
-	out.RawString("\"profit\":")
-	out.Float64(float64(in.Profit))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"customerOrderRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.CustomerOrderRef))
 	}
-	first = false
-	out.RawString("\"sizeCancelled\":")
-	out.Float64(float64(in.SizeCancelled))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"customerStrategyRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.CustomerStrategyRef))
 	}
-	first = false
-	out.RawString("\"customerOrderRef\":")
-	out.String(string(in.CustomerOrderRef))
-	if !first {
-		out.RawByte(',')
-	}
-	first = false
-	out.RawString("\"customerStrategyRef\":")
-	out.String(string(in.CustomerStrategyRef))
 	out.RawByte('}')
 }
 
@@ -6927,22 +7305,24 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi43(out *jwriter.Writer, in CancelOr
 	first := true
 	_ = first
 	if in.MarketID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketId\":")
 		out.String(string(in.MarketID))
 	}
 	if len(in.Instructions) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"instructions\":")
-		if in.Instructions == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"instructions\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v110, v111 := range in.Instructions {
 				if v110 > 0 {
@@ -6954,11 +7334,13 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi43(out *jwriter.Writer, in CancelOr
 		}
 	}
 	if in.CustomerRef != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"customerRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"customerRef\":")
 		out.String(string(in.CustomerRef))
 	}
 	out.RawByte('}')
@@ -7031,43 +7413,53 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi44(out *jwriter.Writer, in CancelIn
 	first := true
 	_ = first
 	if in.Status != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"status\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"status\":")
 		out.String(string(in.Status))
 	}
 	if in.ErrorCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"errorCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"errorCode\":")
 		out.String(string(in.ErrorCode))
 	}
 	if true {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"instruction\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"instruction\":")
 		(in.Instruction).MarshalEasyJSON(out)
 	}
 	if in.SizeCancelled != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"sizeCancelled\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"sizeCancelled\":")
 		out.Float64(float64(in.SizeCancelled))
 	}
 	if in.CancelDate != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"cancelledDate\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"cancelledDate\":")
 		out.String(string(in.CancelDate))
 	}
 	out.RawByte('}')
@@ -7134,19 +7526,23 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi45(out *jwriter.Writer, in CancelIn
 	first := true
 	_ = first
 	if in.BetID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"betId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"betId\":")
 		out.String(string(in.BetID))
 	}
 	if in.SizeReduction != 0 {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"sizeReduction\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"sizeReduction\":")
 		out.Float64(float64(in.SizeReduction))
 	}
 	out.RawByte('}')
@@ -7240,46 +7636,54 @@ func easyjson8e2f8dd8EncodeGithubComTarbBfapi46(out *jwriter.Writer, in CancelEx
 	first := true
 	_ = first
 	if in.CustomerRef != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"customerRef\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"customerRef\":")
 		out.String(string(in.CustomerRef))
 	}
 	if in.Status != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"status\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"status\":")
 		out.String(string(in.Status))
 	}
 	if in.ErrorCode != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"errorCode\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"errorCode\":")
 		out.String(string(in.ErrorCode))
 	}
 	if in.MarketID != "" {
-		if !first {
-			out.RawByte(',')
+		const prefix string = ",\"marketId\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
 		}
-		first = false
-		out.RawString("\"marketId\":")
 		out.String(string(in.MarketID))
 	}
 	if len(in.InstructionReports) != 0 {
-		if !first {
-			out.RawByte(',')
-		}
-		first = false
-		out.RawString("\"instructionReports\":")
-		if in.InstructionReports == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
-			out.RawString("null")
+		const prefix string = ",\"instructionReports\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
 		} else {
+			out.RawString(prefix)
+		}
+		{
 			out.RawByte('[')
 			for v113, v114 := range in.InstructionReports {
 				if v113 > 0 {
