@@ -39,7 +39,7 @@ func GetApplicationSubscriptionToken(arg GetSubTokenArg) (string, error) {
 	var err error
 	var result string
 
-	result, err = www.Build(http.MethodPost, scheme, exchangeHost, getApplicationSubscriptionHistory).
+	result, err = www.Build(http.MethodPost, scheme, exchangeHost, getApplicationSubscriptionToken).
 		WithJSONBody(arg).
 		CollectString()
 

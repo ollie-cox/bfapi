@@ -40,6 +40,7 @@ const (
 	getAccountFunds                   string = "/exchange/account/rest/v1.0/getAccountFunds/"
 	getAccountDetails                 string = "/exchange/account/rest/v1.0/getAccountDetails/"
 	getApplicationSubscriptionHistory string = "/exchange/account/rest/v1.0/getApplicationSubscriptionHistory/"
+	getApplicationSubscriptionToken   string = "/exchange/account/rest/v1.0/getApplicationSubscriptionToken/"
 
 	// Supported exchange method paths
 	listMarketCatalogue string = "/exchange/betting/rest/v1.0/listMarketCatalogue/"
