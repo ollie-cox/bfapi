@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/tarb/www"
+	"github.com/tarb/util/www"
 )
 
 //

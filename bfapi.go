@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/tarb/www"
+	"github.com/tarb/util/www"
 )
 
 //

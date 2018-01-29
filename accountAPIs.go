@@ -3,7 +3,7 @@ package bfapi
 import (
 	"net/http"
 
-	"github.com/tarb/www"
+	"github.com/tarb/util/www"
 )
 
 //
