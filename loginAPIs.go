@@ -51,10 +51,13 @@ func Login(username, password string) (string, error) {
 		}).
 		CollectJSON(&result)
 
-	// Connection worked but login was not successful
-	// Probably caused by username/password error
 	if err != nil {
-		return "", err
+		switch e := err.(type) {
+		case www.StatusError:
+			return "", LoginError{HTTPStatus: e.StatusCode, Status: Fail, Err: e.Body}
+		default:
+			return "", LoginError{Status: Fail, Err: e.Error()}
+		}
 	} else if result.Status != Success {
 		return "", LoginError{Status: result.Status, Err: result.Error}
 	}

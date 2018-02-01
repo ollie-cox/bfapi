@@ -24,8 +24,9 @@ type LoginResult struct {
 
 //
 type LoginError struct {
-	Status string
-	Err    string
+	HTTPStatus int
+	Status     string
+	Err        string
 }
 
 //

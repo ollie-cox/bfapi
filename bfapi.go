@@ -71,10 +71,11 @@ var (
 // certBytes, keyBytes - sed to make the certificate used in the http.Client
 // appkey - default header value for X-Application <appkey>
 // testing - sets which host is used in urls - production or testing
-func Init(appKey, certFile, keyFile string) {
+func Init(productAppKey, certFile, keyFile string) {
 	var err error
 
-	// store the config vars
+	// store the vars
+	appKey = productAppKey
 	if certificate, err = tls.LoadX509KeyPair(certFile, keyFile); err != nil {
 		log.Fatal("Error initilizing bfapi > ", err)
 	}
