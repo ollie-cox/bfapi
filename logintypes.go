@@ -31,5 +31,5 @@ type LoginError struct {
 
 //
 func (err LoginError) Error() string {
-	return err.Status + " " + err.Err
+	return err.Err
 }

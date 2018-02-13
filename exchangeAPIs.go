@@ -91,6 +91,18 @@ func ListClearedOrders(arg ListClearedOrdersArgs) (ClearedOrderSummaryReport, er
 	return result, err
 }
 
+//
+func ListCurrentOrders(arg ListCurrentOrdersArgs) (CurrentOrderSummaryReport, error) {
+	var err error
+	var result CurrentOrderSummaryReport
+
+	err = www.Build(http.MethodPost, scheme, exchangeHost, listCurrentOrders).
+		WithJSONBody(arg).
+		CollectJSON(&result)
+
+	return result, err
+}
+
 // GetMarketMenuJSON   Collects JSON Market Menu from Betfair API
 func GetMarketMenuJSON() ([]byte, error) {
 	var err error

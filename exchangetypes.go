@@ -463,6 +463,52 @@ type ClearedOrderSummary struct {
 }
 
 //
+type ListCurrentOrdersArgs struct {
+	BetIDs               []string   `json:"betIds,omitempty"`
+	MarketIDs            []string   `json:"marketIds,omitempty"`
+	OrderProjection      string     `json:"orderProjection,omitempty"` // ALL, EXECUTABLE, EXECUTION_COMPLETE
+	CustomerOrderRefs    []string   `json:"customerOrderRefs,omitempty"`
+	CustomerStrategyRefs []string   `json:"customerStrategyRefs,omitempty"`
+	DateRange            *TimeRange `json:"dateRange,omitempty"`
+	OrderBy              string     `json:"orderBy,omitempty"` // BY_MARKET,BY_MATCH_TIME,BY_PLACE_TIME,BY_SETTLED_TIME,BY_VOID_TIME
+	SortDir              string     `json:"sortDir,omitempty"` //EARLIEST_TO_LATEST, LATEST_TO_EARLIEST
+	FromRecord           int        `json:"fromRecord,omitempty"`
+	RecordCount          int        `json:"recordCount,omitempty"`
+}
+
+//
+type CurrentOrderSummaryReport struct {
+	CurrentOrders []CurrentOrderSummary `json:"currentOrders"`
+	MoreAvailable bool                  `json:"moreAvailable"`
+}
+
+//
+type CurrentOrderSummary struct {
+	BetID               string    `json:"betId"`
+	MarketID            string    `json:"marketId"`
+	SelectionID         int64     `json:"selectionId"`
+	Handicap            float64   `json:"handicap"`
+	PriceSize           PriceSize `json:"priceSize"`
+	BspLiability        float64   `json:"bspLiability"`
+	Side                string    `json:"side"`            // BACK | LAY
+	Status              string    `json:"status"`          // EXECUTABLE,EXECUTION_COMPLETE
+	PersistenceType     string    `json:"persistenceType"` // LAPSE | PERSIST | MARKET_ON_CLOSE
+	OrderType           string    `json:"orderType"`       // LIMIT | LIMIT_ON_CLOSE | MARKET_ON_CLOSE
+	PlacedDate          time.Time `json:"placedDate"`
+	MatchedDate         time.Time `json:"matchedDate"`
+	AveragePriceMatched float64   `json:"averagePriceMatched"`
+	SizeMatched         float64   `json:"sizeMatched"`
+	SizeRemaining       float64   `json:"sizeRemaining"`
+	SizeLapsed          float64   `json:"sizeLapsed"`
+	SizeCancelled       float64   `json:"sizeCancelled"`
+	SizeVoided          float64   `json:"sizeVoided"`
+	RegulatorAuthCode   string    `json:"regulatorAuthCode"`
+	RegulatorCode       string    `json:"regulatorCode"`
+	CustomerOrderRef    string    `json:"customerOrderRef"`
+	CustomerStrategyRef string    `json:"customerStrategyRef"`
+}
+
+//
 type ItemDescription struct {
 	EventTypeDesc   string    `json:"eventTypeDesc"`
 	EventDesc       string    `json:"eventDesc"`

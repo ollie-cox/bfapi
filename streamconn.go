@@ -37,6 +37,11 @@ func NewStream(hdlr StreamHandler, to time.Duration, cntx interface{}) (*Stream,
 	var err error
 	var sc *Stream
 
+	var certs []tls.Certificate
+	if certificate.Certificate != nil {
+		certs = append(certs, certificate)
+	}
+
 	c, err = tls.DialWithDialer(&net.Dialer{Timeout: to}, "tcp", streamHost, &tls.Config{
 		Certificates:       []tls.Certificate{certificate},
 		InsecureSkipVerify: true,

@@ -26,7 +26,7 @@ const (
 	scheme string = "https"
 
 	// Hosts
-	testHost         string = "localhost"
+	testHost         string = "127.0.0.1:443"
 	testStreamHost   string = ":8080"
 	prodAccountHost  string = "identitysso.betfair.com"
 	prodExchangeHost string = "api.betfair.com"
@@ -50,6 +50,7 @@ const (
 	listMarketCatalogue string = "/exchange/betting/rest/v1.0/listMarketCatalogue/"
 	listMarketBook      string = "/exchange/betting/rest/v1.0/listMarketBook/"
 	listClearedOrders   string = "/exchange/betting/rest/v1.0/listClearedOrders/"
+	listCurrentOrders   string = "/exchange/betting/rest/v1.0/listCurrentOrders/"
 	cancelOrders        string = "/exchange/betting/rest/v1.0/cancelOrders/"
 	placeOrders         string = "/exchange/betting/rest/v1.0/placeOrders/"
 	replaceOrders       string = "/exchange/betting/rest/v1.0/replaceOrders/"
@@ -66,12 +67,12 @@ var (
 	token       string
 )
 
-// Init creates a new http.Client, sets up default headers and configures
+// InitWithCert creates a new http.Client, sets up default headers and configures
 // which host to use
 // certBytes, keyBytes - sed to make the certificate used in the http.Client
 // appkey - default header value for X-Application <appkey>
 // testing - sets which host is used in urls - production or testing
-func Init(productAppKey, certFile, keyFile string) {
+func InitWithCert(productAppKey, certFile, keyFile string) {
 	var err error
 
 	// store the vars
@@ -86,6 +87,36 @@ func Init(productAppKey, certFile, keyFile string) {
 	var transport = &http.Transport{
 		TLSClientConfig: &tls.Config{
 			Certificates:       []tls.Certificate{certificate},
+			InsecureSkipVerify: true,
+			Renegotiation:      tls.RenegotiateFreelyAsClient,
+			Rand:               rand.Reader,
+		},
+		Dial: func(network, addr string) (net.Conn, error) {
+			return net.DialTimeout(network, addr, time.Duration(time.Second*3))
+		},
+		MaxIdleConnsPerHost: 50,
+	}
+
+	www.SetClient(&http.Client{Transport: transport})
+
+	// X-Authentication SessionToken is set in defaults after successful certLogin
+	www.SetDefaultHeaders(func(h http.Header) {
+		h.Set("X-Application", appKey)
+		h.Set("Accept", "application/json")
+		h.Set("Connection", "keep-alive")
+	})
+}
+
+// Init creates a new http.Client, sets up default headers and configures
+// which host to use
+func Init(productAppKey string) {
+	// store the vars
+	appKey = productAppKey
+	exchangeHost, accountHost, streamHost = prodExchangeHost, prodAccountHost, prodStreamHost
+
+	// set up https client with supplied cert
+	var transport = &http.Transport{
+		TLSClientConfig: &tls.Config{
 			InsecureSkipVerify: true,
 			Renegotiation:      tls.RenegotiateFreelyAsClient,
 			Rand:               rand.Reader,

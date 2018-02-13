@@ -143,6 +143,8 @@ func easyjsonAe34d1eDecodeGithubComTarbBfapi1(in *jlexer.Lexer, out *LoginError)
 			continue
 		}
 		switch key {
+		case "HTTPStatus":
+			out.HTTPStatus = int(in.Int())
 		case "Status":
 			out.Status = string(in.String())
 		case "Err":
@@ -161,6 +163,16 @@ func easyjsonAe34d1eEncodeGithubComTarbBfapi1(out *jwriter.Writer, in LoginError
 	out.RawByte('{')
 	first := true
 	_ = first
+	{
+		const prefix string = ",\"HTTPStatus\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Int(int(in.HTTPStatus))
+	}
 	{
 		const prefix string = ",\"Status\":"
 		if first {
