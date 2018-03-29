@@ -14,10 +14,11 @@ type ListMarketCatalogueArg struct {
 
 //
 type MarketListFilter struct {
-	MarketIds  []string `json:"marketIds,omitempty"`
-	EventTypes []string `json:"eventTypeIds,omitempty"`
-	Countries  []string `json:"marketCountries,omitempty"`
-	TypeCodes  []string `json:"marketTypeCodes,omitempty"`
+	MarketIds      []string `json:"marketIds,omitempty"`
+	EventTypes     []string `json:"eventTypeIds,omitempty"`
+	Countries      []string `json:"marketCountries,omitempty"`
+	TypeCodes      []string `json:"marketTypeCodes,omitempty"`
+	CompetitionIds []string `json:"competitionIds,omitempty"`
 }
 
 //
