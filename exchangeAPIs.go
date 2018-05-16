@@ -7,7 +7,10 @@ import (
 	"github.com/tarb/util/www"
 )
 
-//
+// ListMarketCatalogue - Returns a list of information about markets that does
+// not change (or changes very rarely). You use listMarketCatalogue to retrieve
+// the name of the market, the names of selections and other information about
+// markets.
 func ListMarketCatalogue(lmc ListMarketCatalogueArg) ([]MarketCatalogue, error) {
 	var err error
 	var result []MarketCatalogue

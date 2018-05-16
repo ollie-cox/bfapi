@@ -5,20 +5,31 @@ import (
 )
 
 //
-type ListMarketCatalogueArg struct {
-	Sort             string           `json:"sort,omitempty"`
-	MarketProjection []string         `json:"marketProjection,omitempty"`
-	MaxResults       int              `json:"maxResults,omitempty"`
-	Filter           MarketListFilter `json:"filter,omitempty"`
+type MarketListFilter struct {
+	TextQuery          string              `json:"textQuery,omitempty"`          // Restrict markets by any text associated with the market such as the Name, Event, Competition, etc. You can include a wildcard character as long as it is not the first character.
+	EventTypeIDs       []string            `json:"eventTypeIds,omitempty"`       // Restrict markets by event type associated with the market. (i.e., Football, Hockey, etc)
+	EventIDs           []string            `json:"eventIds,omitempty"`           // Restrict markets by the event id associated with the market.
+	CompetitionIds     []string            `json:"competitionIds,omitempty"`     // Restrict markets by the competitions associated with the market.
+	MarketIds          []string            `json:"marketIds,omitempty"`          // Restrict markets by the market id associated with the market.
+	Venues             []string            `json:"venues,omitempty"`             // Restrict markets by the venue associated with the market. Currently only Horse Racing markets have venues.
+	BspOnly            bool                `json:"bspOnly,omitempty"`            // Restrict to bsp markets only, if True or non-bsp markets if False. If not specified then returns both BSP and non-BSP markets
+	TurnInPlayEnabled  bool                `json:"turnInPlayEnabled,omitempty"`  // Restrict to markets that will turn in play if True or will not turn in play if false. If not specified, returns both.
+	InPlayOnly         bool                `json:"inPlayOnly,omitempty"`         // Restrict to markets that will turn in play if True or will not turn in play if false. If not specified, returns both.
+	MarketBettingTypes []MarketBettingType `json:"marketBettingTypes,omitempty"` // Restrict to markets that match the betting type of the market (i.e. Odds, Asian Handicap Singles, Asian Handicap Doubles or Line)
+	MarketCountries    []string            `json:"marketCountries,omitempty"`    // Restrict to markets that are in the specified country or countries
+	MarketTypeCodes    []string            `json:"marketTypeCodes,omitempty"`    // Restrict to markets that match the type of the market (i.e., MATCH_ODDS, HALF_TIME_SCORE). You should use this instead of relying on the market name as the market type codes are the same in all locales
+	MarketStartTime    *TimeRange          `json:"marketStartTime,omitempty"`    // Restrict to markets with a market start time before or after the specified date
+	WithOrders         []OrderStatus       `json:"withOrders,omitempty"`         // Restrict to markets that I have one or more orders in these status.
+	RaceTypes          []string            `json:"raceTypes,omitempty"`          // Restrict by race type (i.e. Hurdle, Flat, Bumper, Harness, Chase)
 }
 
-//
-type MarketListFilter struct {
-	MarketIds      []string `json:"marketIds,omitempty"`
-	EventTypes     []string `json:"eventTypeIds,omitempty"`
-	Countries      []string `json:"marketCountries,omitempty"`
-	TypeCodes      []string `json:"marketTypeCodes,omitempty"`
-	CompetitionIds []string `json:"competitionIds,omitempty"`
+// ListMarketCatalogueArg - the arguments supplied to ListMarketCatalogue
+type ListMarketCatalogueArg struct {
+	Filter           MarketListFilter   `json:"filter,omitempty"`           // REQUIRED, The filter to select desired markets. All markets that match the criteria in the filter are selected.
+	MarketProjection []MarketProjection `json:"marketProjection,omitempty"` // The type and amount of data returned about the market.
+	Sort             MarketSort         `json:"sort,omitempty"`             // The order of the results. Will default to RANK if not passed
+	MaxResults       int                `json:"maxResults,omitempty"`       // REQUIRED, limit on the total number of results returned, must be greater than 0 and less than or equal to 1000
+	Locale           string             `json:"locale,omitempty"`           // The language used for the response. If not specified, the default is returned.
 }
 
 //
@@ -36,15 +47,15 @@ type MarketCatalogue struct {
 
 //
 type RunnerCatalogue struct {
-	SelectionID  int64           `json:"selectionId,omitempty"`
-	RunnerName   string          `json:"runnerName,omitempty"`
-	Handicap     float64         `json:"handicap,omitempty"`
-	SortPriority int             `json:"sortPriority,omitempty"`
-	Metadata     *RunnerMetadata `json:"metadata,omitempty"`
+	SelectionID  int64   `json:"selectionId,omitempty"`
+	RunnerName   string  `json:"runnerName,omitempty"`
+	Handicap     float64 `json:"handicap,omitempty"`
+	SortPriority int     `json:"sortPriority,omitempty"`
+	// Metadata     *RunnerMetadata `json:"metadata,omitempty"`
 }
 
 //
-type RunnerMetadata struct {
+type RunnerMetaData struct {
 	SireName                 *string `json:"SIRE_NAME,omitempty"`
 	ClothNumberAlpha         *string `json:"CLOTH_NUMBER_ALPHA,omitempty"`
 	OfficialRating           *string `json:"OFFICIAL_RATING,omitempty"`
